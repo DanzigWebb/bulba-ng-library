@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "75708e8d-9c95-48d7-9ae9-0e7e9395ba3e"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -102,6 +105,37 @@
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        }
+      }
+    },
+    "am-bulba": {
+      "projectType": "library",
+      "root": "projects/am-bulba",
+      "sourceRoot": "projects/am-bulba/src",
+      "prefix": "am",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/am-bulba/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/am-bulba/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/am-bulba/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/am-bulba/src/test.ts",
+            "tsConfig": "projects/am-bulba/tsconfig.spec.json",
+            "karmaConfig": "projects/am-bulba/karma.conf.js"
           }
         }
       }

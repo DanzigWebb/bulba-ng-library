@@ -1,4 +1,13 @@
-import { AfterContentInit, ContentChildren, Directive, forwardRef, InjectionToken, QueryList } from '@angular/core';
+import {
+  AfterContentInit,
+  ContentChildren,
+  Directive,
+  EventEmitter,
+  forwardRef,
+  InjectionToken,
+  Output,
+  QueryList,
+} from '@angular/core';
 import { ToggleButtonsComponent } from "./toggle-buttons.component";
 
 export const AM_BUTTON_TOGGLE_GROUP = new InjectionToken<ToggleButtonsGroupDirective>('AmButtonToggleGroup');
@@ -23,6 +32,14 @@ class SelectionModel {
   }
 }
 
+export class ToggleButtonsEvent {
+  readonly value: any[];
+
+  constructor(buttons: ToggleButtonsComponent[]) {
+    this.value = buttons.map(btn => btn.value);
+  }
+}
+
 @Directive({
   selector: 'am-toggle-buttons-group',
   providers: [
@@ -37,6 +54,10 @@ class SelectionModel {
 })
 export class ToggleButtonsGroupDirective implements AfterContentInit {
 
+  @Output() valueChange = new EventEmitter<ToggleButtonsEvent>();
+
+  private selectionModel = new SelectionModel();
+
   @ContentChildren(forwardRef(() => ToggleButtonsComponent), {
     descendants: true,
   }) public toggleButtons: QueryList<ToggleButtonsComponent> | undefined;
@@ -45,6 +66,27 @@ export class ToggleButtonsGroupDirective implements AfterContentInit {
   }
 
   ngAfterContentInit() {
-    console.log(this.toggleButtons);
+    this.checkState();
+  }
+
+  syncButtonsState(btn: ToggleButtonsComponent) {
+    this.resetButtons();
+    btn.checked = true;
+    this.checkState();
+    this.valueChange.emit(new ToggleButtonsEvent(this.selectionModel.value));
+  }
+
+  resetButtons() {
+    this.toggleButtons?.forEach(btn => {
+      btn.checked = false;
+      btn.detectChange();
+    });
+  }
+
+  checkState() {
+    this.selectionModel.clear();
+    this.toggleButtons
+      ?.filter(btn => btn.checked)
+      .forEach(btn => this.selectionModel.add(btn));
   }
 }

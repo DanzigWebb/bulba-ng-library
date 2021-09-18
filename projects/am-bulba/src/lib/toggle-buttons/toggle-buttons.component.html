@@ -1,5 +1,8 @@
-<button class="button"
-    [class.is-info.is-selected]="checked">
+<button
+    class="button"
+    (click)="onClick()"
+    [class.is-info.is-selected]="checked"
+>
     <span>
         <ng-content></ng-content>
     </span>

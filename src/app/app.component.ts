@@ -1,5 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ToggleButtonsEvent } from "../../projects/am-bulba/src/lib/toggle-buttons/toggle-buttons-group.directive";
+import { FormControl } from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { ToggleButtonsEvent } from "../../projects/am-bulba/src/lib/toggle-butto
 export class AppComponent {
   title = 'am-bulbalar';
 
-  model = 'left';
+  control = new FormControl('left');
 
   buttons = [
     {
@@ -23,7 +24,7 @@ export class AppComponent {
     },
     {
       title: 'right',
-      checked: false,
+      checked: true,
     },
   ]
 
@@ -31,5 +32,11 @@ export class AppComponent {
 
   onChange(event: ToggleButtonsEvent) {
     this.value = event;
+  }
+
+  constructor() {
+    this.control.valueChanges.subscribe(data => {
+      console.log('новое значение:', data);
+    })
   }
 }

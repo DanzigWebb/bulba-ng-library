@@ -1,6 +1,6 @@
 <br>
 <div class="container">
-    <am-toggle-buttons-group (valueChange)="onChange($event)" [(ngModel)]="model">
+    <am-toggle-buttons-group (valueChange)="onChange($event)" [formControl]="control">
         <am-toggle-button 
             *ngFor="let btn of buttons"
             [value]="btn.title"
@@ -10,7 +10,7 @@
         </am-toggle-button>
     </am-toggle-buttons-group>
 
-    <div>Value: <pre>{{model}}</pre></div>
+    <div>Value: <pre>{{control.value}}</pre></div>
 </div>
 
 

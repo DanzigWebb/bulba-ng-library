@@ -77,6 +77,8 @@ export class ToggleButtonsGroupDirective implements ControlValueAccessor, AfterC
     this.valueChange.emit(this.value);
   }
 
+  private outsideValue: any;
+
   private selectionModel = new SelectionModel();
 
   @ContentChildren(forwardRef(() => ToggleButtonsComponent), {
@@ -89,8 +91,13 @@ export class ToggleButtonsGroupDirective implements ControlValueAccessor, AfterC
   }
 
   ngAfterContentInit() {
-    this.checkState();
-    this.setSelectionByValue(this.value);
+    if (this.outsideValue) {
+      this.setSelectionByValue(this.outsideValue);
+    } else {
+      this.checkState();
+      this.updateValue();
+    }
+    this.cdRef.detectChanges();
   }
 
   syncButtonsState(btn: ToggleButtonsComponent) {
@@ -122,15 +129,20 @@ export class ToggleButtonsGroupDirective implements ControlValueAccessor, AfterC
 
   setSelectionByValue(value: any) {
     const currentBtn = this.toggleButtons?.find(btn => btn.value === value);
-    this.resetButtons();
     if (currentBtn) {
-      currentBtn.checked = true;
-      this.checkState();
+      Promise.resolve().then(() => {
+        this.resetButtons();
+        currentBtn.checked = true;
+        currentBtn.detectChange();
+        this.checkState();
+        this.updateValue();
+      });
     }
   }
 
   // Value accessor
   writeValue(value: any): void {
+    this.outsideValue = value;
     this.value = value;
     this.cdRef.markForCheck();
   }

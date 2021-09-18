@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ToggleButtonsModule } from "../../projects/am-bulba/src/lib/toggle-buttons/toggle-buttons.module";
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import { ToggleButtonsModule } from "../../projects/am-bulba/src/lib/toggle-butt
   ],
   imports: [
     BrowserModule,
-    ToggleButtonsModule
+    ToggleButtonsModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

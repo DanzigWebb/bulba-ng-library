@@ -10,6 +10,8 @@ import { ToggleButtonsEvent } from "../../projects/am-bulba/src/lib/toggle-butto
 export class AppComponent {
   title = 'am-bulbalar';
 
+  model = 'left';
+
   buttons = [
     {
       title: 'left',
@@ -21,7 +23,7 @@ export class AppComponent {
     },
     {
       title: 'right',
-      checked: true,
+      checked: false,
     },
   ]
 

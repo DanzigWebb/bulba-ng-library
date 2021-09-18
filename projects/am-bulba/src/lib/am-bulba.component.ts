@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'am-bulba',
@@ -7,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
       am-bulba works!
     </p>
   `,
-  styles: [
-  ]
+  styles: [],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AmBulbaComponent implements OnInit {
 

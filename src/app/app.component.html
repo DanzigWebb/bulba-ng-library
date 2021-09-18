@@ -1,10 +1,16 @@
 <br>
 <div class="container">
-    <am-toggle-buttons-group>
-        <am-toggle-button>Left</am-toggle-button>
-        <am-toggle-button>Center</am-toggle-button>
-        <am-toggle-button>Right</am-toggle-button>
+    <am-toggle-buttons-group (valueChange)="onChange($event)">
+        <am-toggle-button 
+            *ngFor="let btn of buttons"
+            [value]="btn.title"
+            [checked]="btn.checked"
+        >
+            <span>{{btn.title}}</span>
+        </am-toggle-button>
     </am-toggle-buttons-group>
+
+    <div>Value: <pre>{{value?.value}}</pre></div>
 </div>
 
 

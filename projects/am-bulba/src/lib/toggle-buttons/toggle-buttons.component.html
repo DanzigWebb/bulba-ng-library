@@ -2,6 +2,7 @@
     class="button"
     (click)="onClick()"
     [class.is-info.is-selected]="checked"
+    [disabled]="disabled"
 >
     <span>
         <ng-content></ng-content>

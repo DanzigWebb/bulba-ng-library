@@ -5,6 +5,7 @@
             *ngFor="let btn of buttons"
             [value]="btn.title"
             [checked]="btn.checked"
+            [disabled]="!!btn.disabled"
         >
             <span>{{btn.title}}</span>
         </am-toggle-button>

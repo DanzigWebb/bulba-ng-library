@@ -21,6 +21,7 @@ export class AppComponent {
     {
       title: 'center',
       checked: false,
+      disabled: true,
     },
     {
       title: 'right',

@@ -14,6 +14,7 @@ export class ToggleButtonsComponent implements OnInit {
   private _checked = false;
 
   @Input() value: any;
+  @Input() disabled = false;
 
   @Input()
   get checked() { return this._checked; };

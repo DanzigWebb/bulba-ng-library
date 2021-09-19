@@ -29,15 +29,13 @@ export class AppComponent {
     },
   ];
 
-  value: ToggleButtonsEvent | undefined;
-
   onChange(event: ToggleButtonsEvent) {
-    this.value = event;
+    console.log('onChange event:', event);
   }
 
   constructor() {
     this.control.valueChanges.subscribe(data => {
-      console.log('новое значение:', data);
+      console.log('valueChanges subscribe:', data);
     });
   }
 }

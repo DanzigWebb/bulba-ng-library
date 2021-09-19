@@ -51,6 +51,7 @@ export class ToggleButtonsEvent {
 
 @Directive({
   selector: 'am-toggle-buttons-group',
+  exportAs: 'amToggleButtonsGroup',
   providers: [
     TOGGLE_BUTTONS_GROUP_VALUE_ACCESSOR,
     {
@@ -150,17 +151,15 @@ export class ToggleButtonsGroupDirective implements ControlValueAccessor, AfterC
       addButton(value);
     }
 
-    if (selectedButtons.length) {
-      Promise.resolve().then(() => {
-        this.resetButtons();
-        selectedButtons.forEach(btn => {
-          btn.checked = true;
-          btn.detectChange();
-        });
-        this.checkState();
-        this.updateValue();
+    Promise.resolve().then(() => {
+      this.resetButtons();
+      selectedButtons.forEach(btn => {
+        btn.checked = true;
+        btn.detectChange();
       });
-    }
+      this.checkState();
+      this.updateValue();
+    });
   }
 
   // Value accessor
@@ -176,6 +175,13 @@ export class ToggleButtonsGroupDirective implements ControlValueAccessor, AfterC
 
   registerOnTouched(fn: any): void {
     this._onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean) {
+    this.toggleButtons?.forEach(btn => {
+      btn.disabled = isDisabled;
+      btn.detectChange();
+    });
   }
 
   _controlValueAccessorChangeFn: (value: any) => void = () => {};

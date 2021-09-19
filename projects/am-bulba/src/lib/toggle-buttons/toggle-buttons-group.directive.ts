@@ -66,6 +66,8 @@ export class ToggleButtonsGroupDirective implements ControlValueAccessor, AfterC
 
   @Output() valueChange = new EventEmitter<ToggleButtonsEvent>();
 
+  @Input() multiply = false;
+
   @Input()
   get value(): any {
     const selected = this.selectionModel ? this.selectionModel.value : [];
@@ -101,8 +103,12 @@ export class ToggleButtonsGroupDirective implements ControlValueAccessor, AfterC
   }
 
   syncButtonsState(btn: ToggleButtonsComponent) {
-    this.resetButtons();
-    btn.checked = true;
+    if (this.multiply) {
+      btn.checked = !btn.checked;
+    } else {
+      this.resetButtons();
+      btn.checked = true;
+    }
     this.checkState();
     this.updateValue();
     this.valueChange.emit(new ToggleButtonsEvent(this.selectionModel.value));
@@ -123,17 +129,34 @@ export class ToggleButtonsGroupDirective implements ControlValueAccessor, AfterC
   }
 
   updateValue() {
-    const value = this.selectionModel.value.map(btn => btn.value)[0];
+    const value = this.multiply
+      ? this.selectionModel.value.map(btn => btn.value)
+      : this.selectionModel.value.map(btn => btn.value)[0];
+
     this._controlValueAccessorChangeFn(value);
   }
 
-  setSelectionByValue(value: any) {
-    const currentBtn = this.toggleButtons?.find(btn => btn.value === value);
-    if (currentBtn) {
+  setSelectionByValue(value: any | any[]) {
+    const selectedButtons: ToggleButtonsComponent[] = [];
+    const findButton = (key: any) => this.toggleButtons?.find(btn => btn.value === key);
+    const addButton = (key: any) => {
+      const currentBtn = findButton(key);
+      currentBtn && selectedButtons.push(currentBtn);
+    };
+
+    if (Array.isArray(value)) {
+      value.forEach(key => addButton(key));
+    } else {
+      addButton(value);
+    }
+
+    if (selectedButtons.length) {
       Promise.resolve().then(() => {
         this.resetButtons();
-        currentBtn.checked = true;
-        currentBtn.detectChange();
+        selectedButtons.forEach(btn => {
+          btn.checked = true;
+          btn.detectChange();
+        });
         this.checkState();
         this.updateValue();
       });

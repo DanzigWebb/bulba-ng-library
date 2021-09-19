@@ -11,7 +11,7 @@ import { FormControl } from "@angular/forms";
 export class AppComponent {
   title = 'am-bulbalar';
 
-  control = new FormControl('left');
+  control = new FormControl(['left', 'right']);
 
   buttons = [
     {
@@ -26,7 +26,7 @@ export class AppComponent {
       title: 'right',
       checked: true,
     },
-  ]
+  ];
 
   value: ToggleButtonsEvent | undefined;
 
@@ -37,6 +37,6 @@ export class AppComponent {
   constructor() {
     this.control.valueChanges.subscribe(data => {
       console.log('новое значение:', data);
-    })
+    });
   }
 }

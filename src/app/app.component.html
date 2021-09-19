@@ -1,6 +1,6 @@
 <br>
 <div class="container">
-    <am-toggle-buttons-group (valueChange)="onChange($event)" [formControl]="control">
+    <am-toggle-buttons-group (valueChange)="onChange($event)" [formControl]="control" [multiply]="true">
         <am-toggle-button 
             *ngFor="let btn of buttons"
             [value]="btn.title"

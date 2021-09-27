@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { ToggleButtonsModule } from "../../projects/am-bulba/src/lib/toggle-buttons/toggle-buttons.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NavbarModule } from "../../projects/am-bulba/src/lib/navbar/navbar.module";
+import { TabsModule } from "../../projects/am-bulba/src/lib/tabs/tabs.module";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { NavbarModule } from "../../projects/am-bulba/src/lib/navbar/navbar.modu
     ReactiveFormsModule,
 
     ToggleButtonsModule,
-    NavbarModule
+    NavbarModule,
+    TabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

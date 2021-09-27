@@ -1,5 +1,3 @@
-<li>
-    <label><a>tab works!</a></label>
-</li>
-
-<ng-content></ng-content>
+<div class="tab-content" [hidden]="!active">
+    <ng-content></ng-content>
+</div>

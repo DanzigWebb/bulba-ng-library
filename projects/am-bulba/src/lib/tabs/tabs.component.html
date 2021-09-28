@@ -1,22 +1,29 @@
 <div class="tabs"
      *ngIf="tabs"
-     [ngClass]="{
-        'is-centered': position === 'is-centered',
-        'is-right': position === 'is-right',
-        'is-small': size === 'is-small',
-        'is-medium': size === 'is-medium',
-        'is-large': size === 'is-large',
-        'is-boxed': viewType === 'is-boxed',
-        'is-toggle': viewType === 'is-toggle',
-        'is-toggle is-toggle-rounded': viewType === 'is-toggle-rounded'
-    }"
+     [class.is-boxed]="viewType === 'is-boxed'"
+     [class.is-toggle]="viewType === 'is-toggle'"
+     [class.is-toggle-rounded]="rounded"
+
+     [class.is-centered]="position === 'is-centered'"
+     [class.is-right]="position === 'is-right'"
+
+     [class.is-small]="size === 'is-small'"
+     [class.is-medium]="size === 'is-medium'"
+     [class.is-large]="size === 'is-large'"
 >
     <ul>
         <li *ngFor="let tab of tabs"
             [class.is-active]="tab.active"
             (click)="selectTab(tab)"
         >
-            <label><a>{{tab.label}}</a></label>
+            <ng-container *ngIf="tab.labelComponent?.labelContent; else defaultLabel">
+                <ng-container
+                    *ngTemplateOutlet="tab.labelComponent?.labelContent || null">
+                </ng-container>
+            </ng-container>
+            <ng-template #defaultLabel>
+                <label><a>{{tab.label}}</a></label>
+            </ng-template>
         </li>
     </ul>
 </div>

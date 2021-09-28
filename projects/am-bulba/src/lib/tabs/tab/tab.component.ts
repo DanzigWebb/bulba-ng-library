@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ContentChild, Input, OnInit } from '@angular/core';
+import { TabLabelComponent } from "../tab-label/tab-label.component";
 
 @Component({
   selector: 'am-tab',
@@ -9,6 +10,8 @@ export class TabComponent implements OnInit {
 
   @Input() active = false;
   @Input() label = '';
+
+  @ContentChild(TabLabelComponent) labelComponent: TabLabelComponent | undefined;
 
   constructor() { }
 

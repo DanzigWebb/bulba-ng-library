@@ -12,6 +12,7 @@ export class TabsComponent implements OnInit, AfterContentInit {
   @Input() position: TabsPositionType | undefined;
   @Input() size: TabsSizeType | undefined;
   @Input() viewType: TabsViewType | undefined;
+  @Input() rounded = false;
 
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent> | undefined;
 

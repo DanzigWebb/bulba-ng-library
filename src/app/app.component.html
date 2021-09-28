@@ -37,7 +37,7 @@
 
     <br> <br>
 
-    <am-tabs-group size="is-small" viewType="is-boxed">
+    <am-tabs-group [size]="size" [position]="position" [viewType]="viewType" [rounded]="rounded">
         <am-tab label="Tab 1">
             <am-tab-label>
                 <span class="icon is-small">
@@ -67,5 +67,22 @@
             <h3>tab content with Videos</h3>
         </am-tab>
     </am-tabs-group>
+
+    <br>
+    <hr>
+    <br>
+
+    <am-toggle-buttons-group>
+        <am-toggle-button [checked]="true" (click)="position = undefined">Left</am-toggle-button>
+        <am-toggle-button (click)="position = 'is-centered'">Center</am-toggle-button>
+        <am-toggle-button (click)="position = 'is-right'">Right</am-toggle-button>
+    </am-toggle-buttons-group>
+    <hr>
+    <am-toggle-buttons-group>
+        <am-toggle-button [checked]="true" (click)="viewType = undefined; rounded = false">Default</am-toggle-button>
+        <am-toggle-button (click)="viewType = 'is-boxed'; rounded = false">Boxed</am-toggle-button>
+        <am-toggle-button (click)="viewType = 'is-toggle'; rounded = false">Toggle</am-toggle-button>
+        <am-toggle-button (click)="rounded = true">Toggle-rounded</am-toggle-button>
+    </am-toggle-buttons-group>
 </div>
 

@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ToggleButtonsEvent } from "../../projects/am-bulba/src/lib/toggle-buttons/toggle-buttons-group.directive";
 import { FormControl } from "@angular/forms";
+import { TabsPositionType, TabsSizeType, TabsViewType } from "../../projects/am-bulba/src/lib/tabs/tabs.type";
 
 @Component({
   selector: 'app-root',
@@ -28,6 +29,12 @@ export class AppComponent {
       checked: true,
     },
   ];
+
+  // Tabs
+  position: TabsPositionType | undefined;
+  size: TabsSizeType | undefined;
+  viewType: TabsViewType | undefined;
+  rounded = false;
 
   onChange(event: ToggleButtonsEvent) {
     console.log('onChange event:', event);

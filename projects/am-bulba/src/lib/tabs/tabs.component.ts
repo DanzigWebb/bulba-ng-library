@@ -1,5 +1,6 @@
 import { AfterContentInit, Component, ContentChildren, Input, OnInit, QueryList } from '@angular/core';
 import { TabComponent } from "./tab/tab.component";
+import { TabsPositionType, TabsSizeType, TabsViewType } from "./tabs.type";
 
 @Component({
   selector: 'am-tabs-group',
@@ -8,7 +9,9 @@ import { TabComponent } from "./tab/tab.component";
 })
 export class TabsComponent implements OnInit, AfterContentInit {
 
-  @Input() isBoxed = false;
+  @Input() position: TabsPositionType | undefined;
+  @Input() size: TabsSizeType | undefined;
+  @Input() viewType: TabsViewType | undefined;
 
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent> | undefined;
 
@@ -31,5 +34,4 @@ export class TabsComponent implements OnInit, AfterContentInit {
     this.tabs?.toArray().forEach(tab => tab.active = false);
     tab.active = true;
   }
-
 }

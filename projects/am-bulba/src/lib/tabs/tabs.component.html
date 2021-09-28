@@ -1,4 +1,16 @@
-<div class="tabs" [class.is-boxed]="isBoxed" *ngIf="tabs">
+<div class="tabs"
+     *ngIf="tabs"
+     [ngClass]="{
+        'is-centered': position === 'is-centered',
+        'is-right': position === 'is-right',
+        'is-small': size === 'is-small',
+        'is-medium': size === 'is-medium',
+        'is-large': size === 'is-large',
+        'is-boxed': viewType === 'is-boxed',
+        'is-toggle': viewType === 'is-toggle',
+        'is-toggle is-toggle-rounded': viewType === 'is-toggle-rounded'
+    }"
+>
     <ul>
         <li *ngFor="let tab of tabs"
             [class.is-active]="tab.active"

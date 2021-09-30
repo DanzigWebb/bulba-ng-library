@@ -1,7 +1,8 @@
-import { Component, HostBinding, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, HostBinding, Inject, OnDestroy, ViewChild, ViewContainerRef } from '@angular/core';
 import { ModalContainer } from "../modal-container.model";
 import { ModalContext } from "../modal-context.model";
 import { animate, animateChild, query, style, transition, trigger } from "@angular/animations";
+import { DOCUMENT } from "@angular/common";
 
 const animations = [
   trigger('host', [
@@ -34,7 +35,7 @@ const animations = [
       style({
         opacity: 0,
       }),
-      animate('230ms ease-in', style({
+      animate('85ms ease-in', style({
         opacity: 1,
       })),
     ]),
@@ -52,7 +53,7 @@ const animations = [
   `,
   animations,
 })
-export class ModalContainerComponent implements ModalContainer {
+export class ModalContainerComponent implements ModalContainer, OnDestroy {
 
   @HostBinding('@host')
   host: any;
@@ -62,7 +63,17 @@ export class ModalContainerComponent implements ModalContainer {
 
   context!: ModalContext<any>;
 
+  constructor(
+    @Inject(DOCUMENT) private doc: Document
+  ) {
+    this.doc.documentElement.classList.add('is-clipped');
+  }
+
   close() {
     return this.context?.close()
+  }
+
+  ngOnDestroy() {
+    this.doc.documentElement.classList.remove('is-clipped');
   }
 }

@@ -52,28 +52,36 @@ export class AppComponent {
     });
   }
 
-  async add() {
-    console.log(await this.modalService.open(ExampleDialog, 'content of dialog'));
+  dialogCheckedItem = ''
+
+  add() {
+    const modalTitle = 'Check your item';
+    const openedModal = this.modalService.open<string>(ExampleDialog, modalTitle);
+
+    openedModal.subscribe((checkedItem) => {
+      this.dialogCheckedItem = checkedItem;
+    });
   }
 }
 
 @Component({
   template: `
       <div class="modal-content">
+          <header class="modal-card-head">
+              <p class="modal-card-title">{{context.data}}</p>
+              <button class="delete" aria-label="close" (click)="close()"></button>
+          </header>
           <div class="card">
-              <div class="card-content">
-                  {{context.data}}
-              </div>
               <am-panel>
-                  <am-panel-block>
+                  <am-panel-block (click)="closeWithData('bulma')">
                     <span class="panel-icon">
                         <i class="fas fa-book" aria-hidden="true"></i>
-                    </span> bulma
+                    </span> <span>bulma</span>
                   </am-panel-block>
-                  <am-panel-block>
+                  <am-panel-block (click)="closeWithData('marksheet')">
                     <span class="panel-icon">
                         <i class="fas fa-book" aria-hidden="true"></i>
-                    </span> marksheet
+                    </span> <span>marksheet</span>
                   </am-panel-block>
               </am-panel>
           </div>
@@ -85,11 +93,15 @@ export class ExampleDialog {
   title = '';
 
   constructor(
-    public context: ModalContext<any>,
+    public context: ModalContext<string>,
   ) {
   }
 
+  closeWithData(data: string) {
+    this.context.close(data);
+  }
+
   close() {
-    this.context.resolve('');
+    this.context.close('');
   }
 }

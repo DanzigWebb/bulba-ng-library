@@ -63,7 +63,6 @@ export class ModalContainerComponent implements ModalContainer {
   context!: ModalContext<any>;
 
   close() {
-    console.log(this.context);
-    return this.context && this.context.resolve(undefined)
+    return this.context?.close()
   }
 }

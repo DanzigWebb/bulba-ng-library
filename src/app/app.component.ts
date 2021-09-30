@@ -3,7 +3,8 @@ import { ToggleButtonsEvent } from "../../projects/am-bulba/src/lib/toggle-butto
 import { FormControl } from "@angular/forms";
 import { TabsPositionType, TabsSizeType, TabsViewType } from "../../projects/am-bulba/src/lib/tabs/tabs.type";
 import { DialogService } from "../../projects/am-bulba/src/lib/dialog/dialog.service";
-import { Dialog } from "../../projects/am-bulba/src/lib/dialog/models/dialog.model";
+import { ModalService } from "../../projects/am-bulba/src/lib/modal/modal.service";
+import { ModalContext } from "../../projects/am-bulba/src/lib/modal/modal-context.model";
 
 @Component({
   selector: 'app-root',
@@ -44,15 +45,15 @@ export class AppComponent {
 
   constructor(
     private dialog: DialogService,
+    private modalService: ModalService,
   ) {
     this.control.valueChanges.subscribe(data => {
       console.log('valueChanges subscribe:', data);
     });
   }
 
-  open() {
-    const text = 'First Dialog.';
-    this.dialog.open(ExampleDialog, text);
+  async add() {
+    console.log(await this.modalService.open(ExampleDialog, 'content of dialog'));
   }
 }
 
@@ -61,31 +62,34 @@ export class AppComponent {
       <div class="modal-content">
           <div class="card">
               <div class="card-content">
-                  {{title}}
+                  {{context.data}}
               </div>
-              <button class="button" (click)="open()">Open dialog</button>
+              <am-panel>
+                  <am-panel-block>
+                    <span class="panel-icon">
+                        <i class="fas fa-book" aria-hidden="true"></i>
+                    </span> bulma
+                  </am-panel-block>
+                  <am-panel-block>
+                    <span class="panel-icon">
+                        <i class="fas fa-book" aria-hidden="true"></i>
+                    </span> marksheet
+                  </am-panel-block>
+              </am-panel>
           </div>
       </div>
       <button class="modal-close is-large" aria-label="close" (click)="close()"></button>
   `,
 })
-export class ExampleDialog extends Dialog {
+export class ExampleDialog {
   title = '';
 
   constructor(
-    private dialog: DialogService,
-  ) {super();}
-
-  onInjectInputs(title: string): void {
-    this.title = title;
+    public context: ModalContext<any>,
+  ) {
   }
 
-  close(output?: any) {
-    super.close(output);
-  }
-
-  open() {
-    const text = 'Second Dialog.';
-    this.dialog.open(ExampleDialog, text);
+  close() {
+    this.context.resolve('');
   }
 }

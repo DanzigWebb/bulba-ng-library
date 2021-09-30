@@ -8,6 +8,7 @@ import { NavbarModule } from "../../projects/am-bulba/src/lib/navbar/navbar.modu
 import { TabsModule } from "../../projects/am-bulba/src/lib/tabs/tabs.module";
 import { PanelModule } from "../../projects/am-bulba/src/lib/panel/panel.module";
 import { DialogModule } from "../../projects/am-bulba/src/lib/dialog/dialog.module";
+import { ModalModule } from "../../projects/am-bulba/src/lib/modal/modal.module";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { DialogModule } from "../../projects/am-bulba/src/lib/dialog/dialog.modu
     TabsModule,
     PanelModule,
     DialogModule,
+    ModalModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

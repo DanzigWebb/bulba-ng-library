@@ -9,6 +9,7 @@ import { TabsModule } from "../../projects/am-bulba/src/lib/tabs/tabs.module";
 import { PanelModule } from "../../projects/am-bulba/src/lib/panel/panel.module";
 import { DialogModule } from "../../projects/am-bulba/src/lib/dialog/dialog.module";
 import { ModalModule } from "../../projects/am-bulba/src/lib/modal/modal.module";
+import { FormGroupModule } from "../../projects/am-bulba/src/lib/form-group/form-group.module";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ModalModule } from "../../projects/am-bulba/src/lib/modal/modal.module"
     PanelModule,
     DialogModule,
     ModalModule,
+    FormGroupModule
   ],
   providers: [],
   bootstrap: [AppComponent]

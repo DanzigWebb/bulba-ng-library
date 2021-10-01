@@ -62,6 +62,9 @@ export class AppComponent {
       this.dialogCheckedItem = checkedItem;
     });
   }
+
+  inputControl = new FormControl('')
+  inputLoading = false;
 }
 
 @Component({

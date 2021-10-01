@@ -119,7 +119,6 @@
     <hr>
 
 
-
     <div>
         <button class="button" (click)="add()">Add</button>
     </div>
@@ -139,6 +138,26 @@
         </am-panel-block>
     </am-panel>
 
-    <br> <br> <br>
+    <br> <br>
     <hr>
+    <h2 class="title is-2">Form Group | input</h2>
+    <hr>
+
+    <input
+        placeholder="Default input"
+        type="text"
+        amInput
+        required
+        size="is-small"
+        [isRounded]="true"
+        [formControl]="inputControl"
+        [isLoading]="inputLoading"
+    >
+
+    <br>
+    <hr>
+
+    <button class="button" (click)="inputControl.reset()">Reset</button>
+    <button class="button" (click)="inputLoading = !inputLoading">Toggle loading</button>
+
 </div>

@@ -1,0 +1,14 @@
+<input
+    type="text"
+    class="input"
+    [placeholder]="placeholder"
+    readonly
+    (focus)="openPanel()"
+    [value]="value"
+>
+
+<aside class="menu panel" *ngIf="opened">
+    <ul class="menu-list">
+        <ng-content></ng-content>
+    </ul>
+</aside>

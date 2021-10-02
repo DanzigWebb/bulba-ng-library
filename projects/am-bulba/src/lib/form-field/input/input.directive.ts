@@ -4,6 +4,7 @@ import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import { InputClassesEnum, SIZES } from "./input.classes.enum";
 import { AM_FORM_GROUP, FormFieldComponent } from "../form-field/form-field.component";
+import { AmFormFieldControl } from "../form-field.type";
 
 @Directive({
   selector: 'input[amInput]',
@@ -13,7 +14,7 @@ import { AM_FORM_GROUP, FormFieldComponent } from "../form-field/form-field.comp
     '[class.is-danger]': '!isValid && control.touched',
   },
 })
-export class InputDirective implements OnInit, OnDestroy {
+export class InputDirective implements OnInit, OnDestroy, AmFormFieldControl {
   private _isRounded = false;
   private _size = '';
   private _isLoading = false;

@@ -5,7 +5,7 @@
     </div>
 </nav>
 <br>
-<div class="container">
+<div class="container pb-6">
     <hr>
     <h2 class="title is-2">Toggle Buttons</h2>
     <hr>
@@ -169,4 +169,27 @@
     <button class="button" (click)="inputControl.reset()">Reset</button>
     <button class="button" (click)="inputLoading = !inputLoading">Toggle loading</button>
 
+    <hr>
+    <h2 class="title is-2">Form Group | select</h2>
+    <hr>
+
+    <div style="max-width: 400px">
+        <am-form-field>
+            <span class="icon is-small is-left">
+                <i class="fas fa-envelope"></i>
+            </span>
+            <am-select
+                placeholder="Default Select"
+                >
+                <am-option value="option 1">Option 1</am-option>
+                <am-option value="option 2">Option 2</am-option>
+                <am-option value="option 3">Option 3</am-option>
+            </am-select>
+        </am-form-field>
+    </div>
+
+
+    <br>
+    <hr>
+    <br>
 </div>

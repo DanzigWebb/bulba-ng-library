@@ -4,6 +4,8 @@ import { InputDirective } from "./input/input.directive";
 import { FormsModule } from "@angular/forms";
 import { FormFieldComponent } from './form-field/form-field.component';
 import { FormFieldErrorComponent } from './form-field-error/form-field-error.component';
+import { SelectComponent } from './select/select.component';
+import { OptionComponent } from './select/option/option.component';
 
 
 @NgModule({
@@ -11,6 +13,8 @@ import { FormFieldErrorComponent } from './form-field-error/form-field-error.com
     InputDirective,
     FormFieldComponent,
     FormFieldErrorComponent,
+    SelectComponent,
+    OptionComponent,
   ],
   imports: [
     CommonModule,
@@ -20,6 +24,8 @@ import { FormFieldErrorComponent } from './form-field-error/form-field-error.com
     InputDirective,
     FormFieldComponent,
     FormFieldErrorComponent,
+    SelectComponent,
+    OptionComponent,
   ],
 })
 export class FormGroupModule {

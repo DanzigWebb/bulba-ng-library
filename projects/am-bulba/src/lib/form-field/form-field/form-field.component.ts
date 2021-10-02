@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, ContentChild, InjectionToken, OnInit } from '@angular/core';
 import { InputDirective } from "../input/input.directive";
+import { NgControl } from "@angular/forms";
 
 export const AM_FORM_GROUP = new InjectionToken<FormFieldComponent>('AmFormGroup');
 
@@ -17,6 +18,7 @@ export const AM_FORM_GROUP = new InjectionToken<FormFieldComponent>('AmFormGroup
 export class FormFieldComponent implements OnInit, AfterViewInit {
 
   isLoading = false;
+  control: NgControl | undefined;
 
   // Todo: реализовать добавление аттрибутов в div.control через дочерний элемент
   @ContentChild(InputDirective) input!: InputDirective;
@@ -27,7 +29,11 @@ export class FormFieldComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log('this.input', this.input);
+    this.findControl();
+  }
+
+  findControl() {
+    this.control = this.input?.control
   }
 
 }

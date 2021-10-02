@@ -3,7 +3,7 @@ import { NgControl, NgModel } from "@angular/forms";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import { InputClassesEnum, SIZES } from "./input.classes.enum";
-import { AM_FORM_GROUP, FormGroupComponent } from "../form-group/form-group.component";
+import { AM_FORM_GROUP, FormFieldComponent } from "../form-field/form-field.component";
 
 @Directive({
   selector: 'input[amInput]',
@@ -18,7 +18,7 @@ export class InputDirective implements OnInit, OnDestroy {
   private _size = '';
   private _isLoading = false;
 
-  private formGroup: FormGroupComponent;
+  private formField: FormFieldComponent;
 
   isValid: boolean | undefined;
 
@@ -48,7 +48,7 @@ export class InputDirective implements OnInit, OnDestroy {
 
   set isLoading(v) {
     this._isLoading = v;
-    this.formGroup.isLoading = v;
+    this.formField.isLoading = v;
   }
 
 
@@ -59,12 +59,12 @@ export class InputDirective implements OnInit, OnDestroy {
   private destroy$ = new Subject();
 
   constructor(
-    @Optional() @Inject(AM_FORM_GROUP) formGroup: FormGroupComponent,
+    @Optional() @Inject(AM_FORM_GROUP) formGroup: FormFieldComponent,
     protected elementRef: ElementRef<HTMLInputElement>,
     private ngModel: NgModel,
     private control: NgControl,
   ) {
-    this.formGroup = formGroup;
+    this.formField = formGroup;
   }
 
   ngOnInit() {

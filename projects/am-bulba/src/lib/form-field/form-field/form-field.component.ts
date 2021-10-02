@@ -1,20 +1,20 @@
-import { AfterViewInit, Component, ContentChild, InjectionToken, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ContentChild, InjectionToken, OnInit } from '@angular/core';
 import { InputDirective } from "../input/input.directive";
 
-export const AM_FORM_GROUP = new InjectionToken<FormGroupComponent>('AmFormGroup');
+export const AM_FORM_GROUP = new InjectionToken<FormFieldComponent>('AmFormGroup');
 
 @Component({
-  selector: 'am-form-group',
-  templateUrl: './form-group.component.html',
-  styleUrls: ['./form-group.component.css'],
+  selector: 'am-form-field',
+  templateUrl: './form-field.component.html',
+  styleUrls: ['./form-field.component.css'],
   providers: [
     {
       provide: AM_FORM_GROUP,
-      useExisting: FormGroupComponent,
+      useExisting: FormFieldComponent,
     },
   ],
 })
-export class FormGroupComponent implements OnInit, AfterViewInit {
+export class FormFieldComponent implements OnInit, AfterViewInit {
 
   isLoading = false;
 

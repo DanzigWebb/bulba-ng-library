@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormGroupComponent } from './form-group.component';
+import { FormFieldComponent } from './form-field.component';
 
 describe('FormGroupComponent', () => {
-  let component: FormGroupComponent;
-  let fixture: ComponentFixture<FormGroupComponent>;
+  let component: FormFieldComponent;
+  let fixture: ComponentFixture<FormFieldComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FormGroupComponent ]
+      declarations: [ FormFieldComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormGroupComponent);
+    fixture = TestBed.createComponent(FormFieldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

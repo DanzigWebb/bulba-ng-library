@@ -1,11 +1,13 @@
-import { Directive, ElementRef, Input, OnDestroy, OnInit } from '@angular/core';
+import { Directive, ElementRef, Inject, Input, OnDestroy, OnInit, Optional } from '@angular/core';
 import { NgControl, NgModel } from "@angular/forms";
 import { Subject } from "rxjs";
 import { takeUntil } from "rxjs/operators";
 import { InputClassesEnum, SIZES } from "./input.classes.enum";
+import { AM_FORM_GROUP, FormGroupComponent } from "../form-group/form-group.component";
 
 @Directive({
   selector: 'input[amInput]',
+  exportAs: 'amInput',
   providers: [NgModel],
   host: {
     '[class.is-danger]': 'isValid',
@@ -15,6 +17,8 @@ export class InputDirective implements OnInit, OnDestroy {
   private _isRounded = false;
   private _size = '';
   private _isLoading = false;
+
+  private formGroup: FormGroupComponent;
 
   isValid: boolean | undefined;
 
@@ -44,9 +48,7 @@ export class InputDirective implements OnInit, OnDestroy {
 
   set isLoading(v) {
     this._isLoading = v;
-    this._isLoading
-      ? this.setClass(InputClassesEnum.loading)
-      : this.removeClass(InputClassesEnum.loading);
+    this.formGroup.isLoading = v;
   }
 
 
@@ -57,10 +59,12 @@ export class InputDirective implements OnInit, OnDestroy {
   private destroy$ = new Subject();
 
   constructor(
+    @Optional() @Inject(AM_FORM_GROUP) formGroup: FormGroupComponent,
     protected elementRef: ElementRef<HTMLInputElement>,
     private ngModel: NgModel,
     private control: NgControl,
   ) {
+    this.formGroup = formGroup;
   }
 
   ngOnInit() {

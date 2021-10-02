@@ -143,16 +143,23 @@
     <h2 class="title is-2">Form Group | input</h2>
     <hr>
 
-    <input
-        placeholder="Default input"
-        type="text"
-        amInput
-        required
-        size="is-small"
-        [isRounded]="true"
-        [formControl]="inputControl"
-        [isLoading]="inputLoading"
-    >
+    <div style="max-width: 400px">
+        <am-form-group>
+            <span class="icon is-small is-left">
+                 <i class="fas fa-envelope"></i>
+            </span>
+            <input
+                placeholder="Default input"
+                type="text"
+                amInput
+                required
+                [isRounded]="false"
+                [formControl]="inputControl"
+                [isLoading]="inputLoading"
+            >
+        </am-form-group>
+    </div>
+
 
     <br>
     <hr>

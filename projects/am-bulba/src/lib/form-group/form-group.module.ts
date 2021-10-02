@@ -2,19 +2,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { InputDirective } from "./input/input.directive";
 import { FormsModule } from "@angular/forms";
+import { FormGroupComponent } from './form-group/form-group.component';
 
 
 
 @NgModule({
   declarations: [
-    InputDirective
+    InputDirective,
+    FormGroupComponent,
   ],
   imports: [
     CommonModule,
     FormsModule
   ],
   exports: [
-    InputDirective
+    InputDirective,
+    FormGroupComponent,
   ]
 })
 export class FormGroupModule { }

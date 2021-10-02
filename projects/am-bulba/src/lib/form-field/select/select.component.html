@@ -3,12 +3,21 @@
     class="input"
     [placeholder]="placeholder"
     readonly
-    (focus)="openPanel()"
+    (focus)="openPanel(dropdown, trigger)"
     [value]="value"
+    #trigger
 >
 
-<aside class="menu panel" *ngIf="opened">
-    <ul class="menu-list">
-        <ng-content></ng-content>
-    </ul>
-</aside>
+<ng-template #dropdown>
+    <div class="select-dropdown-content">
+        <div class="select-overlay" (click)="close()"></div>
+        <div class="select-dropdown">
+            <aside class="menu panel select-box">
+                <ul class="menu-list select-list">
+                    <ng-content></ng-content>
+                </ul>
+            </aside>
+        </div>
+    </div>
+</ng-template>
+

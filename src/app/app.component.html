@@ -173,17 +173,32 @@
     <h2 class="title is-2">Form Group | select</h2>
     <hr>
 
-    <div style="max-width: 400px">
+    <div style="max-width: 200px">
         <am-form-field>
             <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
+                <i class="fas fa-arrows-alt"></i>
             </span>
             <am-select
-                placeholder="Default Select"
+                placeholder="Select position"
                 >
-                <am-option value="option 1">Option 1</am-option>
-                <am-option value="option 2">Option 2</am-option>
-                <am-option value="option 3">Option 3</am-option>
+                <am-option value="Left">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-align-left"></i>
+                    </span>
+                    Left
+                </am-option>
+                <am-option value="Center">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-align-center"></i>
+                    </span>
+                    Center
+                </am-option>
+                <am-option value="Right">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-align-right"></i>
+                    </span>
+                    Right
+                </am-option>
             </am-select>
         </am-form-field>
     </div>

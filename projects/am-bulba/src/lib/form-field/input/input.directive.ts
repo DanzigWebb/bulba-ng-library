@@ -10,7 +10,7 @@ import { AM_FORM_GROUP, FormFieldComponent } from "../form-field/form-field.comp
   exportAs: 'amInput',
   providers: [NgModel],
   host: {
-    '[class.is-danger]': 'isValid',
+    '[class.is-danger]': '!isValid && control.touched',
   },
 })
 export class InputDirective implements OnInit, OnDestroy {
@@ -61,8 +61,7 @@ export class InputDirective implements OnInit, OnDestroy {
   constructor(
     @Optional() @Inject(AM_FORM_GROUP) formGroup: FormFieldComponent,
     protected elementRef: ElementRef<HTMLInputElement>,
-    private ngModel: NgModel,
-    private control: NgControl,
+    public readonly control: NgControl,
   ) {
     this.formField = formGroup;
   }
@@ -72,7 +71,7 @@ export class InputDirective implements OnInit, OnDestroy {
     this.control.control?.valueChanges
       .pipe(takeUntil(this.destroy$))
       .subscribe(() => {
-        this.isValid = this.control.control?.invalid;
+        this.isValid = this.control.control?.valid;
       });
   }
 

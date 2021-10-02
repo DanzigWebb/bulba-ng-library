@@ -1,3 +1,8 @@
 <div class="control has-icons-left has-icons-right" [class.is-loading]="isLoading">
     <ng-content></ng-content>
+
+    <ng-container *ngIf="input.control.invalid && input.control.touched">
+        <ng-content select="am-form-error"></ng-content>
+    </ng-container>
+
 </div>

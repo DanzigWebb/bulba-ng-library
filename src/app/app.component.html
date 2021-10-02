@@ -157,6 +157,7 @@
                 [formControl]="inputControl"
                 [isLoading]="inputLoading"
             >
+            <am-form-error>Is Required field</am-form-error>
         </am-form-field>
     </div>
 
@@ -164,6 +165,7 @@
     <br>
     <hr>
 
+    <button class="button" (click)="inputControl.markAsTouched()">Submit</button>
     <button class="button" (click)="inputControl.reset()">Reset</button>
     <button class="button" (click)="inputLoading = !inputLoading">Toggle loading</button>
 

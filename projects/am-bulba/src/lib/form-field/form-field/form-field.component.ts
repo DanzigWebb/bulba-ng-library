@@ -19,7 +19,7 @@ export class FormFieldComponent implements OnInit, AfterViewInit {
   isLoading = false;
 
   // Todo: реализовать добавление аттрибутов в div.control через дочерний элемент
-  @ContentChild(InputDirective) input!: HTMLInputElement;
+  @ContentChild(InputDirective) input!: InputDirective;
 
   constructor() { }
 

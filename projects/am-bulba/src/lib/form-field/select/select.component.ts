@@ -191,7 +191,6 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   }
 
   emitChange() {
-    console.log(this.selectModel);
     this.valueChange.emit(this.selectModel.value?.value || null);
   }
 

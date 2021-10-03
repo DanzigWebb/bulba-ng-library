@@ -2,7 +2,8 @@
     <ng-content></ng-content>
 
     <ng-container *ngIf="control?.invalid && control?.touched">
-        <ng-content select="am-form-error"></ng-content>
+        <div [@error]>
+            <ng-content select="am-form-error"></ng-content>
+        </div>
     </ng-container>
-
 </div>

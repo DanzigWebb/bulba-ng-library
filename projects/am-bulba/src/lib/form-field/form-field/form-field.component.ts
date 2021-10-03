@@ -2,6 +2,7 @@ import { AfterContentInit, Component, ContentChild, InjectionToken, OnInit } fro
 import { InputDirective } from "../input/input.directive";
 import { NgControl } from "@angular/forms";
 import { SelectComponent } from "../select/select.component";
+import { animationError } from "./form-field.animation";
 
 export const AM_FORM_GROUP = new InjectionToken<FormFieldComponent>('AmFormGroup');
 
@@ -15,6 +16,9 @@ export const AM_FORM_GROUP = new InjectionToken<FormFieldComponent>('AmFormGroup
       useExisting: FormFieldComponent,
     },
   ],
+  animations: [
+    ...animationError
+  ]
 })
 export class FormFieldComponent implements OnInit, AfterContentInit {
 

@@ -2,11 +2,12 @@ import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
-  ElementRef,
-  OnInit,
+  ElementRef, Inject,
+  OnInit, Optional,
   ViewChild,
 } from '@angular/core';
 import { Subject } from "rxjs";
+import { AM_CARD, CardComponent } from "../card.component";
 
 @Component({
   selector: 'div[amCardContent]',
@@ -25,17 +26,20 @@ export class CardContentComponent implements OnInit, AfterViewInit {
   }
 
   constructor(
+    @Optional() @Inject(AM_CARD) public card: CardComponent,
   ) { }
 
   ngOnInit(): void {
   }
 
   ngAfterViewInit() {
-    this.height$.next(this.scrollHeight);
+    this.card.expand
+      ? this.expand()
+      : this.collapse()
   }
 
   expand() {
-    this.height$.next(this.scrollHeight)
+    this.height$.next(this.scrollHeight);
   }
 
   collapse() {

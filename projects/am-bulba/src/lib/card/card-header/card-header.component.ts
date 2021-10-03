@@ -1,6 +1,5 @@
-import { ChangeDetectionStrategy, Component, Inject, OnInit, Optional } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit, Optional } from '@angular/core';
 import { AM_CARD, CardComponent } from "../card.component";
-import { Subject } from "rxjs";
 
 @Component({
   selector: 'header[amCardHeader]',
@@ -13,25 +12,23 @@ import { Subject } from "rxjs";
 })
 export class CardHeaderComponent implements OnInit {
 
-  isExpand$ = new Subject<boolean>();
-
   get expand() {
     return this.card.expand;
   }
 
   constructor(
     @Optional() @Inject(AM_CARD) public card: CardComponent,
+    private cdRef: ChangeDetectorRef,
   ) { }
 
   ngOnInit(): void {
-    this.isExpand$.next(this.expand);
   }
 
   toggle() {
-    const isExpand = this.expand;
-    this.isExpand$.next(isExpand);
-    isExpand
-      ? this.card.collapsedContent()
-      : this.card.expandContent();
+    this.card.expand = !this.card.expand;
+  }
+
+  markForCheck() {
+    this.cdRef.markForCheck();
   }
 }

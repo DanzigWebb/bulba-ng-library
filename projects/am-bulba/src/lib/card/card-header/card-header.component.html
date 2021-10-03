@@ -3,7 +3,8 @@
 <button
     class="card-header-icon"
     aria-label="more options"
-    [class.rotate-icon]="isExpand$ | async"
+    *ngIf="card.canExpand"
+    [class.rotate-icon]="card.expand"
     (click)="toggle()"
 >
     <span class="icon">

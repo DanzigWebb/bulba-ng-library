@@ -72,6 +72,10 @@ export class AppComponent {
   onSelectChange($event: any) {
     console.log('select changes:', $event);
   }
+
+  // Card
+  isExpand = true;
+  isCanExpand = true;
 }
 
 @Component({

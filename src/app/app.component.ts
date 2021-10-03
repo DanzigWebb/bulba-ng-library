@@ -1,10 +1,11 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ToggleButtonsEvent } from "../../projects/am-bulba/src/lib/toggle-buttons/toggle-buttons-group.directive";
 import { FormControl, Validators } from "@angular/forms";
 import { TabsPositionType, TabsSizeType, TabsViewType } from "../../projects/am-bulba/src/lib/tabs/tabs.type";
 import { DialogService } from "../../projects/am-bulba/src/lib/dialog/dialog.service";
 import { ModalService } from "../../projects/am-bulba/src/lib/modal/modal.service";
 import { ModalContext } from "../../projects/am-bulba/src/lib/modal/modal-context.model";
+import { CardComponent } from "../../projects/am-bulba/src/lib/card/card.component";
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,9 @@ import { ModalContext } from "../../projects/am-bulba/src/lib/modal/modal-contex
   encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
+
+  @ViewChild('card') card!: CardComponent;
+
   title = 'am-bulbalar';
 
   control = new FormControl(['left', 'right']);
@@ -52,7 +56,7 @@ export class AppComponent {
     });
   }
 
-  dialogCheckedItem = ''
+  dialogCheckedItem = '';
 
   add() {
     const modalTitle = 'Check your item';
@@ -63,7 +67,7 @@ export class AppComponent {
     });
   }
 
-  inputControl = new FormControl()
+  inputControl = new FormControl();
   inputLoading = false;
 
   // select
@@ -76,6 +80,15 @@ export class AppComponent {
   // Card
   isExpand = true;
   isCanExpand = true;
+
+  onSubmitAction() {
+    const dialog$ = this.modalService.open(SubmitDialog);
+    dialog$.subscribe(s => {
+      if (s) {
+        this.card.expand = false;
+      }
+    });
+  }
 }
 
 @Component({
@@ -117,5 +130,38 @@ export class ExampleDialog {
 
   close() {
     this.context.close('');
+  }
+}
+
+
+@Component({
+  template: `
+      <div class="modal-content">
+          <header class="modal-card-head">
+              <p class="modal-card-title">Submit Action</p>
+          </header>
+          <div class="modal-card-body">
+              Are you sure you want to delete this?
+          </div>
+
+          <footer class="modal-card-foot">
+              <button class="button is-success" (click)="submit()">Submit</button>
+              <button class="button" (click)="close()">Cancel</button>
+          </footer>
+      </div>
+  `,
+})
+export class SubmitDialog {
+  constructor(
+    public context: ModalContext<string>,
+  ) {
+  }
+
+  close() {
+    this.context.close(false);
+  }
+
+  submit() {
+    this.context.close(true);
   }
 }

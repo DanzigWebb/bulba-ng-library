@@ -219,6 +219,7 @@
 
     <div style="max-width: 400px">
         <am-card
+            #card
             [expand]="isExpand"
             [canExpand]="isCanExpand"
         >
@@ -237,8 +238,7 @@
                     </div>
                 </div>
                 <footer class="card-footer">
-                    <a href="#" class="card-footer-item">Save</a> <a href="#" class="card-footer-item">Edit</a>
-                    <a href="#" class="card-footer-item">Delete</a>
+                    <a class="card-footer-item" (click)="onSubmitAction()">Delete</a>
                 </footer>
             </div>
         </am-card>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppComponent, ExampleDialog } from './app.component';
+import { AppComponent, ExampleDialog, SubmitDialog } from './app.component';
 import { ToggleButtonsModule } from "../../projects/am-bulba/src/lib/toggle-buttons/toggle-buttons.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NavbarModule } from "../../projects/am-bulba/src/lib/navbar/navbar.module";
@@ -16,6 +16,7 @@ import { CardModule } from "../../projects/am-bulba/src/lib/card/card.module";
   declarations: [
     AppComponent,
     ExampleDialog,
+    SubmitDialog,
   ],
   imports: [
     BrowserModule,

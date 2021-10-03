@@ -2,7 +2,6 @@ import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ToggleButtonsEvent } from "../../projects/am-bulba/src/lib/toggle-buttons/toggle-buttons-group.directive";
 import { FormControl, Validators } from "@angular/forms";
 import { TabsPositionType, TabsSizeType, TabsViewType } from "../../projects/am-bulba/src/lib/tabs/tabs.type";
-import { DialogService } from "../../projects/am-bulba/src/lib/dialog/dialog.service";
 import { ModalService } from "../../projects/am-bulba/src/lib/modal/modal.service";
 import { ModalContext } from "../../projects/am-bulba/src/lib/modal/modal-context.model";
 import { CardComponent } from "../../projects/am-bulba/src/lib/card/card.component";
@@ -48,7 +47,6 @@ export class AppComponent {
   }
 
   constructor(
-    private dialog: DialogService,
     private modalService: ModalService,
   ) {
     this.control.valueChanges.subscribe(data => {

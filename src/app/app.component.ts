@@ -63,8 +63,15 @@ export class AppComponent {
     });
   }
 
-  inputControl = new FormControl('')
+  inputControl = new FormControl()
   inputLoading = false;
+
+  // select
+  selectControl = new FormControl();
+
+  onSelectChange($event: any) {
+    console.log('select changes:', $event);
+  }
 }
 
 @Component({

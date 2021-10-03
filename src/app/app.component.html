@@ -180,8 +180,10 @@
             </span>
             <am-select
                 placeholder="Select position"
-                >
-                <am-option value="Left">
+               [formControl]="selectControl"
+               (valueChange)="onSelectChange($event)"
+            >
+                <am-option value="Left" [checked]="true">
                     <span class="icon is-small is-left">
                         <i class="fas fa-align-left"></i>
                     </span>
@@ -203,8 +205,14 @@
         </am-form-field>
     </div>
 
-
     <br>
+    <div>
+        <pre>value: {{selectControl.value}}</pre>
+    </div>
     <hr>
+
+    <button class="button" (click)="selectControl.setValue('Center')">Check center</button>
+    <button class="button" (click)="selectControl.reset()">Reset</button>
+    <!--<button class="button" (click)="inputLoading = !inputLoading">Toggle loading</button>-->
     <br>
 </div>

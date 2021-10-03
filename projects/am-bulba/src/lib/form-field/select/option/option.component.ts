@@ -1,10 +1,11 @@
-import { Component, Inject, Input, OnInit, Optional } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Input, OnInit, Optional } from '@angular/core';
 import { AM_SELECT, SelectComponent } from "../select.component";
 
 @Component({
   selector: 'am-option',
   templateUrl: './option.component.html',
   styleUrls: ['./option.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OptionComponent implements OnInit {
 
@@ -13,6 +14,7 @@ export class OptionComponent implements OnInit {
 
   constructor(
     @Optional() @Inject(AM_SELECT) public select: SelectComponent,
+    private cdRef: ChangeDetectorRef,
   ) {
   }
 
@@ -22,5 +24,9 @@ export class OptionComponent implements OnInit {
   onClick($event: MouseEvent) {
     $event.preventDefault();
     this.select.checkOption(this);
+  }
+
+  markForCheck() {
+    this.cdRef.markForCheck();
   }
 }

@@ -180,26 +180,23 @@
             </span>
             <am-select
                 placeholder="Select position"
-               [formControl]="selectControl"
-               (valueChange)="onSelectChange($event)"
+                [formControl]="selectControl"
+                (valueChange)="onSelectChange($event)"
             >
                 <am-option value="Left" [checked]="true">
                     <span class="icon is-small is-left">
                         <i class="fas fa-align-left"></i>
-                    </span>
-                    Left
+                    </span> Left
                 </am-option>
                 <am-option value="Center">
                     <span class="icon is-small is-left">
                         <i class="fas fa-align-center"></i>
-                    </span>
-                    Center
+                    </span> Center
                 </am-option>
                 <am-option value="Right">
                     <span class="icon is-small is-left">
                         <i class="fas fa-align-right"></i>
-                    </span>
-                    Right
+                    </span> Right
                 </am-option>
             </am-select>
 
@@ -215,6 +212,35 @@
 
     <button class="button" (click)="selectControl.setValue('Center')">Check center</button>
     <button class="button" (click)="selectControl.reset()">Reset</button>
-    <!--<button class="button" (click)="inputLoading = !inputLoading">Toggle loading</button>-->
+
+    <hr>
+    <h2 class="title is-2">Card</h2>
+    <hr>
+
+    <div style="max-width: 400px">
+        <am-card>
+            <header amCardHeader>
+                <p class="card-header-title">
+                    Card Header
+                </p>
+            </header>
+
+            <div amCardContent>
+                <div class="card-content">
+                    <div class="content">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris. <a href="#">@bulmaio</a>.
+                        <a href="#">#css</a> <a href="#">#responsive</a> <br>
+                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                    </div>
+                </div>
+                <footer class="card-footer">
+                    <a href="#" class="card-footer-item">Save</a> <a href="#" class="card-footer-item">Edit</a>
+                    <a href="#" class="card-footer-item">Delete</a>
+                </footer>
+            </div>
+        </am-card>
+    </div>
+
     <br>
+    <hr>
 </div>

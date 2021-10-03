@@ -1,0 +1,12 @@
+<ng-content></ng-content>
+
+<button
+    class="card-header-icon"
+    aria-label="more options"
+    [class.rotate-icon]="isExpand$ | async"
+    (click)="toggle()"
+>
+    <span class="icon">
+      <i class="fas fa-angle-down" aria-hidden="true"></i>
+    </span>
+</button>

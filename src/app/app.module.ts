@@ -10,6 +10,7 @@ import { PanelModule } from "../../projects/am-bulba/src/lib/panel/panel.module"
 import { DialogModule } from "../../projects/am-bulba/src/lib/dialog/dialog.module";
 import { ModalModule } from "../../projects/am-bulba/src/lib/modal/modal.module";
 import { FormGroupModule } from "../../projects/am-bulba/src/lib/form-field/form-group.module";
+import { CardModule } from "../../projects/am-bulba/src/lib/card/card.module";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FormGroupModule } from "../../projects/am-bulba/src/lib/form-field/form
     PanelModule,
     DialogModule,
     ModalModule,
-    FormGroupModule
+    FormGroupModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

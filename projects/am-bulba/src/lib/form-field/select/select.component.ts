@@ -21,6 +21,22 @@ import { ControlValueAccessor, NgControl } from "@angular/forms";
 import { OptionComponent } from "./option/option.component";
 import { createPopper, Instance } from "@popperjs/core";
 import { DOCUMENT } from "@angular/common";
+import { animate, style, transition, trigger } from "@angular/animations";
+
+const animationSlide = [
+  trigger('slide', [
+    transition(':enter', [
+      style({
+        transform: 'translateY(-20px) scaleY(0.8)',
+        opacity: 0,
+      }),
+      animate('150ms cubic-bezier(0, 0, 0.2, 1)', style({
+        transform: 'translateY(0) scaleY(1)',
+        opacity: 1,
+      })),
+    ]),
+  ]),
+];
 
 export const AM_SELECT = new InjectionToken<SelectComponent>('AmSelect');
 
@@ -54,6 +70,9 @@ class SelectModel {
       useExisting: SelectComponent,
     },
   ],
+  animations: [
+    ...animationSlide,
+  ],
 })
 export class SelectComponent implements OnInit, AfterContentInit, ControlValueAccessor, AmFormFieldControl {
 
@@ -67,6 +86,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   value: string | null = null;
   isInvalid: boolean | null | undefined;
   isTouched: boolean | null | undefined;
+
+  isDropdownShow = false;
 
   accessorInitialValue: string | null = null;
 
@@ -91,7 +112,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   ngOnInit(): void {
   }
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     this.cdRef.detectChanges();
     if (!this.options) {
       return;
@@ -111,7 +132,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     }
   }
 
-  open(dropdownTpl: TemplateRef<any>, trigger: HTMLInputElement) {
+  open(dropdownTpl: TemplateRef<any>, trigger: HTMLInputElement): void {
+    this.isDropdownShow = true;
     this.view = this.vcr.createEmbeddedView(dropdownTpl);
     this.dropdownRef = <HTMLElement>this.view.rootNodes[0];
     const dropdown = <HTMLElement>this.dropdownRef.querySelector('.select-dropdown');
@@ -134,7 +156,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     });
   }
 
-  close() {
+  close(): void {
+    this.isDropdownShow = false;
     this.closed.emit();
     this.popperRef?.destroy();
     this.view?.destroy();
@@ -142,10 +165,11 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     this.view = null;
     this.popperRef = null;
     this.dropdownRef = null;
+
     this._onTouched();
   }
 
-  checkOption(option: OptionComponent, isUserChange = true) {
+  checkOption(option: OptionComponent, isUserChange = true): void {
     if (this.options) {
       Promise.resolve().then(() => {
         this.resetOptions();
@@ -163,7 +187,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     }
   }
 
-  checkOptionByValue(value: any) {
+  checkOptionByValue(value: any): void {
     if (this.options) {
       const option = this.options.find(option => option.value === value);
       if (option) {
@@ -174,7 +198,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     }
   }
 
-  private resetOptions() {
+  private resetOptions(): void {
     if (this.options) {
       this.options.forEach(option => {
         option.checked = false;
@@ -185,7 +209,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     }
   }
 
-  emitChange() {
+  emitChange(): void {
     this.valueChange.emit(this.selectModel.value?.value || null);
   }
 

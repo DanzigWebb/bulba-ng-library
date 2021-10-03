@@ -13,7 +13,7 @@
     <div class="select-dropdown-content">
         <div class="select-overlay" (click)="close()"></div>
         <div class="select-dropdown">
-            <aside class="menu panel select-box">
+            <aside class="menu panel select-box" *ngIf="isDropdownShow" [@slide]>
                 <ul class="menu-list select-list">
                     <ng-content></ng-content>
                 </ul>

@@ -8,27 +8,13 @@
 }
 
 .select-dropdown {
-    background: #fff;
-
     z-index: 11;
 }
 
 .select-box {
-    animation-duration: .12s;
-    animation-name: AmSelectShow;
+    background: #fff;
 }
 
 input {
     cursor: pointer;
-}
-
-@keyframes AmSelectShow {
-    from {
-        opacity: 0;
-        transform: translateY(-40px) scale(0.6);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
 }

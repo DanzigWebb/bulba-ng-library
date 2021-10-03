@@ -1,6 +1,5 @@
 import {
   AfterContentInit,
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   ContentChildren,
@@ -18,18 +17,12 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { AmFormFieldControl } from "../form-field.type";
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl } from "@angular/forms";
+import { ControlValueAccessor, NgControl } from "@angular/forms";
 import { OptionComponent } from "./option/option.component";
 import { createPopper, Instance } from "@popperjs/core";
 import { DOCUMENT } from "@angular/common";
 
 export const AM_SELECT = new InjectionToken<SelectComponent>('AmSelect');
-
-export const SELECT_VALUE_ACCESSOR = {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => SelectComponent),
-  multi: true,
-};
 
 class SelectModel {
   private selections = new Set<OptionComponent>();
@@ -55,9 +48,7 @@ class SelectModel {
   selector: 'am-select',
   templateUrl: './select.component.html',
   styleUrls: ['./select.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
-    SELECT_VALUE_ACCESSOR,
     {
       provide: AM_SELECT,
       useExisting: SelectComponent,
@@ -71,11 +62,11 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   @Input() placeholder = '';
 
-  control!: NgControl;
-
   opened = false;
   selectModel = new SelectModel();
   value: string | null = null;
+  isInvalid: boolean | null | undefined;
+  isTouched: boolean | null | undefined;
 
   accessorInitialValue: string | null = null;
 
@@ -92,7 +83,10 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     private vcr: ViewContainerRef,
     private zone: NgZone,
     private cdRef: ChangeDetectorRef,
-  ) { }
+    public readonly control: NgControl,
+  ) {
+    control.valueAccessor = this;
+  }
 
   ngOnInit(): void {
   }
@@ -148,6 +142,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     this.view = null;
     this.popperRef = null;
     this.dropdownRef = null;
+    this._onTouched();
   }
 
   checkOption(option: OptionComponent, isUserChange = true) {
@@ -164,7 +159,7 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
         if (isUserChange) {
           this.emitChange();
         }
-      })
+      });
     }
   }
 

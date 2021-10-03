@@ -1,8 +1,9 @@
 <input
+    readonly
     type="text"
     class="input"
+    [class.is-danger]="control?.invalid && control?.touched"
     [placeholder]="placeholder"
-    readonly
     (focus)="open(dropdown, trigger)"
     [value]="value"
     #trigger
@@ -20,4 +21,3 @@
         </div>
     </div>
 </ng-template>
-

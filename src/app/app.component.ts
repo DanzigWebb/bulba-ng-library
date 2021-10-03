@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ToggleButtonsEvent } from "../../projects/am-bulba/src/lib/toggle-buttons/toggle-buttons-group.directive";
-import { FormControl } from "@angular/forms";
+import { FormControl, Validators } from "@angular/forms";
 import { TabsPositionType, TabsSizeType, TabsViewType } from "../../projects/am-bulba/src/lib/tabs/tabs.type";
 import { DialogService } from "../../projects/am-bulba/src/lib/dialog/dialog.service";
 import { ModalService } from "../../projects/am-bulba/src/lib/modal/modal.service";
@@ -67,7 +67,7 @@ export class AppComponent {
   inputLoading = false;
 
   // select
-  selectControl = new FormControl();
+  selectControl = new FormControl('', Validators.required);
 
   onSelectChange($event: any) {
     console.log('select changes:', $event);

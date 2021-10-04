@@ -2,6 +2,10 @@
  * Public API Surface of am-bulba
  */
 
-export * from './lib/am-bulba.service';
-export * from './lib/am-bulba.component';
-export * from './lib/am-bulba.module';
+export * from './lib/card';
+export * from './lib/form-field';
+export * from './lib/modal';
+export * from './lib/navbar';
+export * from './lib/panel';
+export * from './lib/tabs';
+export * from './lib/toggle-buttons';

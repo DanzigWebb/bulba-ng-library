@@ -2,14 +2,15 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent, ExampleDialog, SubmitDialog } from './app.component';
-import { ToggleButtonsModule } from "../../projects/am-bulba/src/lib/toggle-buttons/toggle-buttons.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { NavbarModule } from "../../projects/am-bulba/src/lib/navbar/navbar.module";
-import { TabsModule } from "../../projects/am-bulba/src/lib/tabs/tabs.module";
-import { PanelModule } from "../../projects/am-bulba/src/lib/panel/panel.module";
-import { ModalModule } from "../../projects/am-bulba/src/lib/modal/modal.module";
-import { FormGroupModule } from "../../projects/am-bulba/src/lib/form-field/form-group.module";
-import { CardModule } from "../../projects/am-bulba/src/lib/card/card.module";
+import { ToggleButtonsModule } from "../../projects/am-bulba/src/lib/toggle-buttons";
+import { NavbarModule } from "../../projects/am-bulba/src/lib/navbar";
+import { TabsModule } from "../../projects/am-bulba/src/lib/tabs";
+import { PanelModule } from "../../projects/am-bulba/src/lib/panel";
+import { ModalModule } from "../../projects/am-bulba/src/lib/modal";
+import { FormGroupModule } from "../../projects/am-bulba/src/lib/form-field";
+import { CardModule } from "../../projects/am-bulba/src/lib/card";
+
 
 @NgModule({
   declarations: [

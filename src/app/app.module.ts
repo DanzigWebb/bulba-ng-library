@@ -13,6 +13,7 @@ import { PanelModule } from "../../projects/am-bulba/src/lib/panel";
 import { ModalModule } from "../../projects/am-bulba/src/lib/modal";
 import { FormGroupModule } from "../../projects/am-bulba/src/lib/form-field";
 import { CardModule } from "../../projects/am-bulba/src/lib/card";
+import { TabsExampleModule } from "./tabs-example/tabs-example.module";
 
 
 @NgModule({
@@ -27,6 +28,8 @@ import { CardModule } from "../../projects/am-bulba/src/lib/card";
     ReactiveFormsModule,
     RouterModule,
     AppRoutingModule,
+
+    TabsExampleModule,
 
     ToggleButtonsModule,
     NavbarModule,

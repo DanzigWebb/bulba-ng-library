@@ -1,7 +1,5 @@
 import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormControl, Validators } from "@angular/forms";
-import { TabsPositionType, TabsSizeType, TabsViewType } from "../../projects/am-bulba/src/lib/tabs";
-import { ToggleButtonsEvent } from "../../projects/am-bulba/src/lib/toggle-buttons";
 import { ModalContext, ModalService } from "../../projects/am-bulba/src/lib/modal";
 import { CardComponent } from "../../projects/am-bulba/src/lib/card";
 
@@ -34,16 +32,6 @@ export class AppComponent {
       checked: true,
     },
   ];
-
-  // Tabs
-  position: TabsPositionType | undefined;
-  size: TabsSizeType | undefined;
-  viewType: TabsViewType | undefined;
-  rounded = false;
-
-  onChange(event: ToggleButtonsEvent) {
-    console.log('onChange event:', event);
-  }
 
   constructor(
     private modalService: ModalService,

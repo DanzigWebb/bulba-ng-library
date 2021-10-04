@@ -14,6 +14,7 @@ import { ModalModule } from "../../projects/am-bulba/src/lib/modal";
 import { FormGroupModule } from "../../projects/am-bulba/src/lib/form-field";
 import { CardModule } from "../../projects/am-bulba/src/lib/card";
 import { TabsExampleModule } from "./tabs-example/tabs-example.module";
+import { ToggleButtonsExampleModule } from "./toggle-buttons-example/toggle-buttons-example.module";
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { TabsExampleModule } from "./tabs-example/tabs-example.module";
     AppRoutingModule,
 
     TabsExampleModule,
+    ToggleButtonsExampleModule,
 
     ToggleButtonsModule,
     NavbarModule,

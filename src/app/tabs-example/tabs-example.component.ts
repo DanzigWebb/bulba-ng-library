@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { TabsPositionType, TabsSizeType, TabsViewType } from "../../../projects/am-bulba/src/lib/tabs";
-import { ToggleButtonsEvent } from "../../../projects/am-bulba/src/lib/toggle-buttons";
 
 @Component({
   selector: 'app-tabs-example',
@@ -18,10 +17,5 @@ export class TabsExampleComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  onChange(event: ToggleButtonsEvent) {
-    console.log('onChange event:', event);
-  }
-
 
 }

@@ -1,0 +1,30 @@
+<h2 class="title is-2">Toggle Buttons</h2>
+<hr>
+<am-toggle-buttons-group
+    (valueChange)="onChange($event)"
+    [formControl]="control"
+    [multiply]="true"
+>
+    <am-toggle-button
+        *ngFor="let btn of buttons"
+        [value]="btn.title"
+        [checked]="btn.checked"
+        [disabled]="!!btn.disabled"
+    >
+        <span>{{btn.title}}</span>
+    </am-toggle-button>
+</am-toggle-buttons-group>
+
+<div>
+    <pre>value: {{control.value}}</pre>
+</div>
+
+<hr>
+
+<button class="button" (click)="control.reset()">Clear</button>
+<button class="button" (click)="control.disabled
+    ? control.enable()
+    : control.disable()"
+>
+    {{control.disabled ? 'Enable' : 'Disable'}}
+</button>

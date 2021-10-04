@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { StartPageComponent } from "./start-page/start-page.component";
 
 import { TabsExampleComponent } from "./tabs-example/tabs-example.component";
+import { ToggleButtonsExampleComponent } from "./toggle-buttons-example/toggle-buttons-example.component";
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: 'tabs',
     component: TabsExampleComponent,
+  },
+  {
+    path: 'toggle-buttons',
+    component: ToggleButtonsExampleComponent,
   },
 ];
 

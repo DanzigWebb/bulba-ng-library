@@ -1,3 +1,25 @@
+.page {
+	height: 100%;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.main {
+	display: flex;
+	flex: 1;
+	
+	.menu {
+		padding: 1em;
+		border-right: 2px solid #f5f5f5;
+	}
+	
+	&-content {
+		padding: 1em;
+		flex: 1;
+	}
+}
+
 pre {
 	min-height: 40px;
 }

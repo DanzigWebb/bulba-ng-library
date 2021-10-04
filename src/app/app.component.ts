@@ -1,10 +1,9 @@
 import { Component, ViewChild, ViewEncapsulation } from '@angular/core';
-import { ToggleButtonsEvent } from "../../projects/am-bulba/src/lib/toggle-buttons/toggle-buttons-group.directive";
 import { FormControl, Validators } from "@angular/forms";
-import { TabsPositionType, TabsSizeType, TabsViewType } from "../../projects/am-bulba/src/lib/tabs/tabs.type";
-import { ModalService } from "../../projects/am-bulba/src/lib/modal/modal.service";
-import { ModalContext } from "../../projects/am-bulba/src/lib/modal/modal-context.model";
-import { CardComponent } from "../../projects/am-bulba/src/lib/card/card.component";
+import { TabsPositionType, TabsSizeType, TabsViewType } from "../../projects/am-bulba/src/lib/tabs";
+import { ToggleButtonsEvent } from "../../projects/am-bulba/src/lib/toggle-buttons";
+import { ModalContext, ModalService } from "../../projects/am-bulba/src/lib/modal";
+import { CardComponent } from "../../projects/am-bulba/src/lib/card";
 
 @Component({
   selector: 'app-root',

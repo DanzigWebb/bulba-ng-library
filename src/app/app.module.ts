@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from "@angular/router";
+
+import { AppRoutingModule } from "./app-routing.module";
 
 import { AppComponent, ExampleDialog, SubmitDialog } from './app.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -22,6 +25,8 @@ import { CardModule } from "../../projects/am-bulba/src/lib/card";
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
+    AppRoutingModule,
 
     ToggleButtonsModule,
     NavbarModule,
@@ -29,7 +34,7 @@ import { CardModule } from "../../projects/am-bulba/src/lib/card";
     PanelModule,
     ModalModule,
     FormGroupModule,
-    CardModule
+    CardModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

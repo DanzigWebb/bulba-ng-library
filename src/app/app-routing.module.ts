@@ -4,6 +4,7 @@ import { StartPageComponent } from "./start-page/start-page.component";
 
 import { TabsExampleComponent } from "./tabs-example/tabs-example.component";
 import { ToggleButtonsExampleComponent } from "./toggle-buttons-example/toggle-buttons-example.component";
+import { ModalExampleComponent } from "./modal-example/modal-example.component";
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'toggle-buttons',
     component: ToggleButtonsExampleComponent,
+  },
+  {
+    path: 'modal',
+    component: ModalExampleComponent,
   },
 ];
 

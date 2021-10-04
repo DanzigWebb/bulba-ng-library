@@ -1,0 +1,23 @@
+<h2 class="title is-2">Dialog</h2>
+<hr>
+
+<div style="max-width: 400px">
+    <div>
+        <button class="button" (click)="add()">Add</button>
+    </div>
+
+    <hr>
+
+    <am-panel>
+        <am-panel-block *ngIf="dialogCheckedItem === 'bulma'">
+        <span class="panel-icon">
+            <i class="fas fa-book" aria-hidden="true"></i>
+        </span> bulma
+        </am-panel-block>
+        <am-panel-block *ngIf="dialogCheckedItem === 'marksheet'">
+        <span class="panel-icon">
+            <i class="fas fa-book" aria-hidden="true"></i>
+        </span> marksheet
+        </am-panel-block>
+    </am-panel>
+</div>

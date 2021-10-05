@@ -16,6 +16,7 @@ import { CardModule } from "../../projects/am-bulba/src/lib/card";
 import { TabsExampleModule } from "./tabs-example/tabs-example.module";
 import { ToggleButtonsExampleModule } from "./toggle-buttons-example/toggle-buttons-example.module";
 import { ModalExampleModule } from "./modal-example/modal-example.module";
+import { SelectExampleModule } from "./select-example/select-example.module";
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { ModalExampleModule } from "./modal-example/modal-example.module";
     TabsExampleModule,
     ToggleButtonsExampleModule,
     ModalExampleModule,
+    SelectExampleModule,
 
     ToggleButtonsModule,
     NavbarModule,

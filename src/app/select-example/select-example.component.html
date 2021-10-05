@@ -1,0 +1,42 @@
+<h2 class="title is-2">Form Group | select</h2>
+<hr>
+
+<div style="max-width: 200px">
+    <am-form-field>
+            <span class="icon is-small is-left">
+                <i class="fas fa-arrows-alt"></i>
+            </span>
+        <am-select
+            placeholder="Select position"
+            [formControl]="select"
+            (valueChange)="onChange($event)"
+        >
+            <am-option value="Left" [checked]="true">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-align-left"></i>
+                    </span> Left
+            </am-option>
+            <am-option value="Center">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-align-center"></i>
+                    </span> Center
+            </am-option>
+            <am-option value="Right">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-align-right"></i>
+                    </span> Right
+            </am-option>
+        </am-select>
+
+        <am-form-error>Is Required field</am-form-error>
+    </am-form-field>
+</div>
+
+<br>
+<div>
+    <pre>value: {{select.value}}</pre>
+</div>
+<hr>
+
+<button class="button" (click)="select.setValue('Center')">Check center</button>
+<button class="button" (click)="select.reset()">Reset</button>

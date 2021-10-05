@@ -1,3 +1,11 @@
+.am-select {
+    cursor: pointer;
+	
+	&__placeholder {
+		color: rgba(54, 54, 54, 0.3);
+	}
+}
+
 .select-overlay {
     position: fixed;
     top: 0;

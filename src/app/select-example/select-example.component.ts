@@ -8,7 +8,9 @@ import { FormControl, Validators } from "@angular/forms";
 })
 export class SelectExampleComponent implements OnInit {
 
-  select = new FormControl('', Validators.required);
+  select = new FormControl('Center', Validators.required);
+
+  multipleSelect = new FormControl(null, Validators.required);
 
   constructor() { }
 

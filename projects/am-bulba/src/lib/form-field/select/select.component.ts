@@ -44,7 +44,7 @@ class SelectModel {
   private selections = new Set<OptionComponent>();
 
   get value() {
-    return Array.from(this.selections)[0];
+    return Array.from(this.selections);
   }
 
   add(option: OptionComponent) {
@@ -63,7 +63,7 @@ class SelectModel {
 @Component({
   selector: 'am-select',
   templateUrl: './select.component.html',
-  styleUrls: ['./select.component.css'],
+  styleUrls: ['./select.component.scss'],
   providers: [
     {
       provide: AM_SELECT,
@@ -80,16 +80,17 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   @Output() valueChange = new EventEmitter<any>();
 
   @Input() placeholder = '';
+  @Input() multiply = false;
 
   opened = false;
   selectModel = new SelectModel();
-  value: string | null = null;
+  value: any = null;
   isInvalid: boolean | null | undefined;
   isTouched: boolean | null | undefined;
 
   isDropdownShow = false;
 
-  accessorInitialValue: string | null = null;
+  accessorInitialValue: any | any[] | null = null;
 
   @ContentChildren(forwardRef(() => OptionComponent), {
     descendants: true,
@@ -120,19 +121,24 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
     if (this.accessorInitialValue) {
       this.resetOptions();
-      const option = this.options.find(option => option.value === this.accessorInitialValue);
-      option && this.checkOption(option, false);
+      this.checkOptionByValue(this.accessorInitialValue);
       return;
     }
 
-    const checked = this.options.find(option => option.checked);
-    if (checked) {
-      this.selectModel.add(checked);
-      this.checkOption(checked);
-    }
+    this.options.forEach(option => {
+      if (option.checked) {
+        this.selectModel.add(option);
+      }
+    })
+
+    Promise.resolve().then(() => {
+      this.updateValue();
+      this._controlValueAccessorChangeFn(this.value);
+      this.cdRef.markForCheck();
+    })
   }
 
-  open(dropdownTpl: TemplateRef<any>, trigger: HTMLInputElement): void {
+  open(dropdownTpl: TemplateRef<any>, trigger: HTMLElement): void {
     this.isDropdownShow = true;
     this.view = this.vcr.createEmbeddedView(dropdownTpl);
     this.dropdownRef = <HTMLElement>this.view.rootNodes[0];
@@ -172,13 +178,21 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   checkOption(option: OptionComponent, isUserChange = true): void {
     if (this.options) {
       Promise.resolve().then(() => {
-        this.resetOptions();
-        this.selectModel.add(option);
-        option.checked = true;
+        if (!this.multiply) {
+          this.resetOptions();
+          this.close();
+          this.selectModel.add(option);
+          option.checked = true;
+        } else {
+          option.checked = !option.checked;
+          option.checked
+            ? this.selectModel.add(option)
+            : this.selectModel.remove(option);
+        }
+
         option.markForCheck();
-        this.value = option.value;
+        this.updateValue();
         this._controlValueAccessorChangeFn(this.value);
-        this.close();
 
         if (isUserChange) {
           this.emitChange();
@@ -187,14 +201,25 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     }
   }
 
-  checkOptionByValue(value: any): void {
+  checkOptionByValue(value: any | any[]): void {
     if (this.options) {
-      const option = this.options.find(option => option.value === value);
-      if (option) {
-        option.checked = true;
-        option.markForCheck();
-        this.checkOption(option);
-      }
+      const isArray = this.isArray(value);
+      const values: any[] = isArray ? value : [value];
+
+      values.forEach(v => {
+        const option = this.options?.find(option => option.value === v);
+        if (option) {
+          this.checkOption(option);
+        }
+      });
+    }
+  }
+
+  private updateValue() {
+    if (this.multiply) {
+      this.value = [...this.selectModel.value].map(v => v.value);
+    } else {
+      this.value = this.selectModel.value[0]?.value;
     }
   }
 
@@ -205,18 +230,21 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
         option.markForCheck();
       });
       this.selectModel.clear();
-      this.value = this.selectModel.value?.value || null;
+      this.updateValue();
     }
   }
 
   emitChange(): void {
-    this.valueChange.emit(this.selectModel.value?.value || null);
+    this.valueChange.emit(this.value || null);
   }
+
+  isArray = (value: any) => Array.isArray(value);
 
   // Value accessor
   writeValue(value: any): void {
     if (!this.options) {
       this.accessorInitialValue = value;
+      return;
     }
 
     if (!value) {

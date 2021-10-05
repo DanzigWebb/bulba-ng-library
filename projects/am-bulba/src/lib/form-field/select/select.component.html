@@ -1,13 +1,19 @@
-<input
-    readonly
-    type="text"
-    class="input"
-    [class.is-danger]="control?.invalid && control?.touched"
-    [placeholder]="placeholder"
-    (focus)="open(dropdown, trigger)"
-    [value]="value"
-    #trigger
+<div class="input am-select"
+     [class.is-danger]="control?.invalid && control?.touched"
+     (click)="open(dropdown, trigger)"
+     #trigger
 >
+    <span *ngIf="!value || !value?.length" class="am-select__placeholder" [innerHTML]="placeholder || ''"></span>
+    <ng-container *ngIf="value || value?.length">
+        <div class="tags" *ngIf="isArray(value) && value?.length; else singleSelect">
+            <span class="tag is-primary" *ngFor="let tag of value">
+                {{tag}}
+                <button class="delete is-small" (click)="$event.stopPropagation(); checkOptionByValue(tag)"></button>
+            </span>
+        </div>
+        <ng-template #singleSelect>{{value}}</ng-template>
+    </ng-container>
+</div>
 
 <ng-template #dropdown>
     <div class="select-dropdown-content">

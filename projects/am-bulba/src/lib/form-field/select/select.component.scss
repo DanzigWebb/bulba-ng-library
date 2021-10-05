@@ -1,8 +1,29 @@
 .am-select {
     cursor: pointer;
+	position: relative;
+	overflow: hidden;
 	
-	&__placeholder {
+	a {
+		cursor: default;
+		text-decoration: none;
+	}
+	
+	.is-delete {
+		margin-right: 4px;
+		cursor: pointer;
+	}
+	
+	&-placeholder {
 		color: rgba(54, 54, 54, 0.3);
+	}
+	
+	&-tags {
+		width: 100%;
+		position: absolute;
+		left: 3em;
+		top: 0;
+		bottom: 0;
+		right: 0;
 	}
 }
 

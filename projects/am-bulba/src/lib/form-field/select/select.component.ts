@@ -35,6 +35,39 @@ const animationSlide = [
         opacity: 1,
       })),
     ]),
+    transition(':leave', [
+      style({
+        transform: 'translateY(0) scaleY(1)',
+        opacity: 1,
+      }),
+      animate('150ms cubic-bezier(0, 0, 0.2, 1)', style({
+        transform: 'translateY(-20px) scaleY(0.8)',
+        opacity: 0,
+      })),
+    ]),
+  ]),
+  trigger('slideLeft', [
+    transition(':enter', [
+      style({
+        transform: 'translateX(-20px) scaleY(0.8)',
+        opacity: 0,
+      }),
+      animate('150ms cubic-bezier(0, 0, 0.2, 1)', style({
+        transform: 'translateX(0) scaleY(1)',
+        opacity: 1,
+      })),
+    ]),
+    transition(':leave', [
+      style({
+        transform: 'translateX(0) scaleY(1)',
+        opacity: 1,
+      }),
+      animate('150ms cubic-bezier(0, 0, 0.2, 1)', style({
+        width: 0,
+        marginRight: -10,
+        opacity: 0,
+      })),
+    ]),
   ]),
 ];
 

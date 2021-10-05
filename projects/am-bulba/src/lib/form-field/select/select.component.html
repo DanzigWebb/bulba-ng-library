@@ -3,16 +3,16 @@
      (click)="open(dropdown, trigger)"
      #trigger
 >
-    <span *ngIf="!value || !value?.length" class="am-select__placeholder" [innerHTML]="placeholder || ''"></span>
-    <ng-container *ngIf="value || value?.length">
-        <div class="tags" *ngIf="isArray(value) && value?.length; else singleSelect">
-            <span class="tag is-primary" *ngFor="let tag of value">
-                {{tag}}
-                <button class="delete is-small" (click)="$event.stopPropagation(); checkOptionByValue(tag)"></button>
-            </span>
+    <span *ngIf="!value || !value?.length" class="am-select-placeholder" [innerHTML]="placeholder || ''"></span>
+    <ng-container *ngIf="(value || value?.length) && isArray(value); else singleSelect">
+        <div class="tags has-addons am-select-tags">
+            <ng-container *ngFor="let tag of value">
+                <a class="tag is-link" [@slideLeft]>{{tag}}</a>
+                <a class="tag is-delete" [@slideLeft] (click)="$event.stopPropagation(); checkOptionByValue(tag)"></a>
+            </ng-container>
         </div>
-        <ng-template #singleSelect>{{value}}</ng-template>
     </ng-container>
+    <ng-template #singleSelect>{{value}}</ng-template>
 </div>
 
 <ng-template #dropdown>

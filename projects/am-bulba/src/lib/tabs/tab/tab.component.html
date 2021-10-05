@@ -1,3 +1,5 @@
-<div class="tab-content" *ngIf="active">
-    <ng-content></ng-content>
+<div class="tab-content am-tab-content" *ngIf="active">
+    <div [@slideLeft]>
+        <ng-content></ng-content>
+    </div>
 </div>

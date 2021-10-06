@@ -1,1 +1,10 @@
-<p>menu-panel works!</p>
+<ng-template>
+    <div class="am-menu-panel">
+        <div class="am-menu-panel-overlay" (click)="close()"></div>
+        <div class="am-menu-panel-box">
+            <div class="box" [@slide]>
+                <ng-content></ng-content>
+            </div>
+        </div>
+    </div>
+</ng-template>

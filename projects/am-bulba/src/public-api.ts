@@ -9,3 +9,4 @@ export * from './lib/navbar';
 export * from './lib/panel';
 export * from './lib/tabs';
 export * from './lib/toggle-buttons';
+export * from './lib/menu';

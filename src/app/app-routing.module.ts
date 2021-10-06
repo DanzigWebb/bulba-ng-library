@@ -6,6 +6,7 @@ import { TabsExampleComponent } from "./tabs-example/tabs-example.component";
 import { ToggleButtonsExampleComponent } from "./toggle-buttons-example/toggle-buttons-example.component";
 import { ModalExampleComponent } from "./modal-example/modal-example.component";
 import { SelectExampleComponent } from "./select-example/select-example.component";
+import { MenuExampleComponent } from "./menu-example/menu-example.component";
 
 const routes: Routes = [
   {
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: 'select',
     component: SelectExampleComponent,
+  },
+  {
+    path: 'menu',
+    component: MenuExampleComponent,
   },
 ];
 

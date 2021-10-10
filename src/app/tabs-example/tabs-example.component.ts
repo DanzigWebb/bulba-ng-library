@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TabsPositionType, TabsSizeType, TabsViewType } from "../../../projects/am-bulba/src/lib/tabs";
+import { FormControl } from "@angular/forms";
 
 @Component({
   selector: 'app-tabs-example',
@@ -7,6 +8,8 @@ import { TabsPositionType, TabsSizeType, TabsViewType } from "../../../projects/
   styleUrls: ['./tabs-example.component.scss']
 })
 export class TabsExampleComponent implements OnInit {
+
+  tabControl = new FormControl(1)
 
   position: TabsPositionType | undefined;
   size: TabsSizeType | undefined;

@@ -14,7 +14,8 @@
     <ul>
         <li *ngFor="let tab of tabs"
             [class.is-active]="tab.active"
-            (click)="selectTab(tab)"
+            [class.is-disabled]="tab.labelComponent?.disabled"
+            (click)="!tab.labelComponent?.disabled && selectTab(tab)"
         >
             <ng-container *ngIf="tab.labelComponent?.labelContent; else defaultLabel">
                 <ng-container

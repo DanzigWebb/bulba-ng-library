@@ -2,7 +2,7 @@ import {
   AfterContentInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  Component,
+  Component, Input,
   OnInit,
   TemplateRef,
   ViewChild,
@@ -11,10 +11,12 @@ import {
 @Component({
   selector: 'am-tab-label',
   templateUrl: './tab-label.component.html',
-  styleUrls: ['./tab-label.component.css'],
+  styleUrls: ['./tab-label.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabLabelComponent implements OnInit, AfterContentInit {
+
+  @Input() disabled = false;
 
   @ViewChild(TemplateRef) labelContent: TemplateRef<any> | undefined;
 
@@ -26,6 +28,10 @@ export class TabLabelComponent implements OnInit, AfterContentInit {
   }
 
   ngAfterContentInit() {
+    this.detectChanges();
+  }
+
+  detectChanges() {
     this.cdRef.detectChanges();
   }
 }

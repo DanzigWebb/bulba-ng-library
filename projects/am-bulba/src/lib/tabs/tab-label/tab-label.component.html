@@ -1,5 +1,7 @@
 <ng-template>
     <label>
-        <a><ng-content></ng-content></a>
+        <a [class.is-disabled]="disabled">
+            <ng-content></ng-content>
+        </a>
     </label>
 </ng-template>

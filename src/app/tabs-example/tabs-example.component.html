@@ -1,7 +1,13 @@
 <h2 class="title is-2">Tabs</h2>
 <hr>
 
-<am-tabs-group [size]="size" [position]="position" [viewType]="viewType" [rounded]="rounded">
+<am-tabs-group
+    [size]="size"
+    [position]="position"
+    [viewType]="viewType"
+    [rounded]="rounded"
+    [formControl]="tabControl"
+>
     <am-tab label="Tab 1">
         <am-tab-label>
                 <span class="icon is-small">
@@ -28,6 +34,18 @@
         <h3><i class="fas fa-film" aria-hidden="true"></i> tab content with Videos</h3>
     </am-tab>
 </am-tabs-group>
+
+<br>
+
+<pre>
+    value: {{tabControl.value}}
+</pre>
+
+<hr>
+
+<button class="button" (click)="tabControl.setValue(1)">Set first</button>
+<button class="button" (click)="tabControl.disable()">Disable</button>
+<button class="button" (click)="tabControl.enable()">Enable</button>
 
 <hr>
 

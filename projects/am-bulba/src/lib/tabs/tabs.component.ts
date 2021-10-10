@@ -1,4 +1,12 @@
-import { AfterContentInit, Component, ContentChildren, Input, OnInit, QueryList } from '@angular/core';
+import {
+  AfterContentInit,
+  ChangeDetectionStrategy,
+  Component,
+  ContentChildren,
+  Input,
+  OnInit,
+  QueryList,
+} from '@angular/core';
 import { TabComponent } from "./tab/tab.component";
 import { TabsPositionType, TabsSizeType, TabsViewType } from "./tabs.type";
 
@@ -6,6 +14,7 @@ import { TabsPositionType, TabsSizeType, TabsViewType } from "./tabs.type";
   selector: 'am-tabs-group',
   templateUrl: './tabs.component.html',
   styleUrls: ['./tabs.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabsComponent implements OnInit, AfterContentInit {
 
@@ -32,7 +41,11 @@ export class TabsComponent implements OnInit, AfterContentInit {
   }
 
   selectTab(tab: TabComponent) {
-    this.tabs?.toArray().forEach(tab => tab.active = false);
+    this.tabs?.toArray().forEach(tab => {
+      tab.active = false;
+      tab.detectChanges();
+    });
     tab.active = true;
+    tab.detectChanges();
   }
 }

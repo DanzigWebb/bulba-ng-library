@@ -1,69 +1,127 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 
 import { TabsComponent } from './tabs.component';
-import { ChangeDetectorRef, Component } from "@angular/core";
-import { TabsPositionType, TabsSizeType, TabsViewType } from "./tabs.type";
+import { Component, ViewChild } from "@angular/core";
 import { TabsModule } from "./tabs.module";
+import { CommonModule } from "@angular/common";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+
+const TAB_ITEMS = [
+  {
+    label: {
+      title: 'Pictures',
+      icon: 'fas fa-image',
+    },
+    content: {
+      text: 'tab content with Pictures',
+      icon: 'fas fa-image',
+    },
+  },
+  {
+    label: {
+      title: 'Music',
+      icon: 'fas fa-music',
+    },
+    content: {
+      text: 'tab content with Music',
+      icon: 'fas fa-music',
+    },
+  },
+  {
+    label: {
+      title: 'Videos',
+      icon: 'fas fa-film',
+    },
+    content: {
+      text: 'tab content with Videos',
+      icon: 'fas fa-film',
+    },
+  },
+];
 
 describe('TabsComponent', () => {
   let component: TabsTestComponent;
   let fixture: ComponentFixture<TabsTestComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [TabsModule],
-      declarations: [TabsTestComponent],
-      providers: [ChangeDetectorRef]
-    })
-      .compileComponents();
-  });
+  const getLabels = (): HTMLElement[] => fixture.nativeElement.querySelectorAll('.tabs ul li');
+  const getTabContent = (): HTMLElement => fixture.nativeElement.querySelector('.tab-content');
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(TabsComponent);
+  beforeEach(fakeAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [TabsModule, CommonModule, BrowserAnimationsModule],
+      declarations: [TabsTestComponent],
+    });
+
+    TestBed.compileComponents();
+  }));
+
+  beforeEach(fakeAsync(() => {
+    fixture = TestBed.createComponent(TabsTestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  });
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
 
+  it('should create labels', () => {
+    const labels = getLabels();
+    expect(labels.length === 3).toBeTruthy();
+  });
+
+  it('should set classes for active label', () => {
+    const [firstLabel, secondLabel] = getLabels();
+    expect(firstLabel.classList.contains('is-active')).toBeTruthy();
+    expect(secondLabel.classList.contains('is-active')).toBeFalsy();
+
+    secondLabel.click();
+    fixture.detectChanges();
+
+    expect(firstLabel.classList.contains('is-active')).toBeFalsy();
+    expect(secondLabel.classList.contains('is-active')).toBeTruthy();
+  });
+
+  it('should show current tab content', () => {
+    const [firstLabel, secondLabel] = getLabels();
+    const [firstContent, secondContent] = TAB_ITEMS[1].content.text;
+    firstLabel.click();
+    fixture.detectChanges();
+
+    expect(firstLabel.classList.contains('is-active')).toBeTruthy();
+    let content = getTabContent();
+    expect(content.innerText.includes(firstContent)).toBeTruthy();
+
+    secondLabel.click();
+    fixture.detectChanges();
+
+    expect(secondLabel.classList.contains('is-active')).toBeTruthy();
+    content = getTabContent();
+    expect(content.innerText.includes(secondContent)).toBeTruthy();
+  });
+});
 
 @Component({
   template: `
-      <am-tabs-group [size]="size" [position]="position" [viewType]="viewType" [rounded]="rounded">
-          <am-tab label="Tab 1">
+      <am-tabs-group #tabsGroup>
+          <am-tab *ngFor="let tab of tabItems">
               <am-tab-label>
                 <span class="icon is-small">
-                    <i class="fas fa-image" aria-hidden="true"></i>
-                </span> <span>Pictures</span>
-              </am-tab-label>
-              <h3><i class="fas fa-image" aria-hidden="true"></i> tab content with Pictures</h3>
-          </am-tab>
-          <am-tab label="Tab 2">
-              <am-tab-label>
-                <span class="icon is-small">
-                    <i class="fas fa-music" aria-hidden="true"></i>
-                </span> <span>Music</span>
+                    <i [ngClass]="tab.label.icon" aria-hidden="true"></i>
+                </span> <span>{{tab.label.title}}</span>
               </am-tab-label>
 
-              <h3><i class="fas fa-music" aria-hidden="true"></i> tab content with Music</h3>
-          </am-tab>
-          <am-tab label="Tab 3">
-              <am-tab-label>
-                <span class="icon is-small">
-                    <i class="fas fa-film" aria-hidden="true"></i>
-                </span> <span>Videos</span>
-              </am-tab-label>
-              <h3><i class="fas fa-film" aria-hidden="true"></i> tab content with Videos</h3>
+              <div class="tab" id="tab-1">
+                  <h3><i [ngClass]="tab.label.icon" aria-hidden="true"></i> {{tab.content.text}}</h3>
+              </div>
           </am-tab>
       </am-tabs-group>
   `,
 })
 class TabsTestComponent {
-  position: TabsPositionType | undefined;
-  size: TabsSizeType | undefined;
-  viewType: TabsViewType | undefined;
-  rounded = false;
+
+  @ViewChild('tabsGroup')
+  public tabsGroup!: TabsComponent;
+
+  tabItems = TAB_ITEMS;
 }

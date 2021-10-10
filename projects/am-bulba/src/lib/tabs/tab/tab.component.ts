@@ -1,4 +1,4 @@
-import { Component, ContentChild, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ContentChild, Input, OnInit } from '@angular/core';
 import { TabLabelComponent } from "../tab-label/tab-label.component";
 import { animate, style, transition, trigger } from "@angular/animations";
 
@@ -21,7 +21,8 @@ const animationSlide = [
   selector: 'am-tab',
   templateUrl: './tab.component.html',
   styleUrls: ['./tab.component.css'],
-  animations: animationSlide
+  animations: animationSlide,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabComponent implements OnInit {
 
@@ -30,9 +31,14 @@ export class TabComponent implements OnInit {
 
   @ContentChild(TabLabelComponent) labelComponent: TabLabelComponent | undefined;
 
-  constructor() { }
+  constructor(
+    private cdRef: ChangeDetectorRef
+  ) { }
 
   ngOnInit(): void {
   }
 
+  detectChanges() {
+    this.cdRef.detectChanges();
+  }
 }

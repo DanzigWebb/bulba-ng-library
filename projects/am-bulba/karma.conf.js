@@ -12,6 +12,10 @@ module.exports = function (config) {
       require('karma-coverage'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
+    files: [
+      {pattern: 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css', watched: false},
+      {pattern: 'https://pro.fontawesome.com/releases/v5.10.0/css/all.css', watched: false}
+    ],
     client: {
       jasmine: {
         // you can add configuration options for Jasmine here
@@ -28,8 +32,8 @@ module.exports = function (config) {
       dir: require('path').join(__dirname, '../../coverage/am-bulba'),
       subdir: '.',
       reporters: [
-        { type: 'html' },
-        { type: 'text-summary' }
+        {type: 'html'},
+        {type: 'text-summary'}
       ]
     },
     reporters: ['progress', 'kjhtml'],

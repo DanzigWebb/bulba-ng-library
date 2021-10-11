@@ -2,9 +2,11 @@
     <div class="am-menu-panel">
         <div class="am-menu-panel-overlay" (click)="close()"></div>
         <div class="am-menu-panel-box">
-            <div class="am-menu-panel-box__wrapper" [@slide]>
-                <ng-content></ng-content>
-            </div>
+            <aside class="menu panel has-background-white am-menu-panel-box__wrapper" [@slide]>
+                <ul class="menu-list" (click)="close()">
+                    <ng-content></ng-content>
+                </ul>
+            </aside>
         </div>
     </div>
 </ng-template>

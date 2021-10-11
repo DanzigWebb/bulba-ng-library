@@ -1,13 +1,37 @@
 <h2 class="title is-2">Menu</h2>
 <hr>
 
-<button class="button" [amMenuTrigger]="menu" #menuTrigger="amMenuTrigger">Menu</button>
+<button
+    class="button"
+    [amMenuTrigger]="menu"
+    #menuTrigger="amMenuTrigger"
+    [placement]="placement"
+>
+    <span>Menu</span>
+</button>
 
 <am-menu-panel #menu="amMenu">
-    <aside class="menu panel">
-        <ul class="menu-list">
-            <li><a>Dashboard</a></li>
-            <li><a>Customers</a></li>
-        </ul>
-    </aside>
+    <li><a (click)="selected = 'Dashboard'">Dashboard</a></li>
+    <li><a (click)="selected = 'Customers'">Customers</a></li>
+    <li><a (click)="selected = ''">Reset</a></li>
 </am-menu-panel>
+
+<hr>
+<pre>selected: {{selected}}</pre>
+<hr>
+
+<button class="button" (click)="menuTrigger.show()">Show</button>
+
+<hr>
+
+<div>
+    Placement:
+
+    <am-toggle-buttons-group [(ngModel)]="placement">
+        <am-toggle-button (click)="placement = 'bottom-start'" value="bottom-start">bottom-start</am-toggle-button>
+        <am-toggle-button (click)="placement = 'bottom'" value="bottom">bottom</am-toggle-button>
+        <am-toggle-button (click)="placement = 'left'" value="left">left</am-toggle-button>
+        <am-toggle-button (click)="placement = 'right'" value="right">right</am-toggle-button>
+        <am-toggle-button (click)="placement = 'top'" value="top">top</am-toggle-button>
+    </am-toggle-buttons-group>
+</div>

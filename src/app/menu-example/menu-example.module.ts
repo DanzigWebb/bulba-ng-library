@@ -4,6 +4,7 @@ import { MenuExampleComponent } from './menu-example.component';
 import { MenuModule } from "../../../projects/am-bulba/src/lib/menu";
 import { FormGroupModule } from "../../../projects/am-bulba/src/lib/form-field";
 import { FormsModule } from "@angular/forms";
+import { ToggleButtonsModule } from "../../../projects/am-bulba/src/lib/toggle-buttons";
 
 
 
@@ -16,6 +17,7 @@ import { FormsModule } from "@angular/forms";
     FormsModule,
     MenuModule,
     FormGroupModule,
+    ToggleButtonsModule
   ],
   exports: [
     MenuExampleComponent

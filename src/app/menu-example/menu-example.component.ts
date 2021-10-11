@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Placement } from "@popperjs/core";
 
 @Component({
   selector: 'app-menu-example',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuExampleComponent implements OnInit {
 
-  model: any;
+  selected = '';
+
+  placement: Placement = 'bottom-start';
 
   constructor() { }
 

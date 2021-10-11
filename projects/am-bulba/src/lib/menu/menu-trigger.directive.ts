@@ -9,7 +9,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { MenuPanelComponent } from "./menu-panel/menu-panel.component";
-import { createPopper, Instance } from "@popperjs/core";
+import { createPopper, Instance, Placement } from "@popperjs/core";
 import { DOCUMENT } from "@angular/common";
 
 
@@ -26,6 +26,8 @@ export class MenuTriggerDirective implements OnInit {
   private view: EmbeddedViewRef<any> | null = null;
   private panelRef: HTMLElement | null = null;
   private popperRef: Instance | null = null;
+
+  @Input() placement: Placement = 'bottom-start';
 
   private isOpen = false;
 
@@ -45,8 +47,8 @@ export class MenuTriggerDirective implements OnInit {
 
   ngOnInit() {
     this.panelContent.onClose.subscribe(() => {
-      this.close()
-    })
+      this.close();
+    });
   }
 
   show() {
@@ -77,7 +79,9 @@ export class MenuTriggerDirective implements OnInit {
 
   private createPopper(trigger: HTMLElement, panel: HTMLElement) {
     this.zone.runOutsideAngular(() => {
-      this.popperRef = this.popperRef = createPopper(trigger, panel);
+      this.popperRef = this.popperRef = createPopper(trigger, panel, {
+        placement: this.placement,
+      });
     });
   }
 }

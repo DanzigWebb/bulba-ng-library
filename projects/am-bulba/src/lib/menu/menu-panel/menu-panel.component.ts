@@ -5,7 +5,7 @@ import { animate, style, transition, trigger } from "@angular/animations";
   selector: 'am-menu-panel',
   exportAs: 'amMenu',
   templateUrl: './menu-panel.component.html',
-  styleUrls: ['./menu-panel.component.css'],
+  styleUrls: ['./menu-panel.component.scss'],
   animations: [
     trigger('slide', [
       transition(':enter', [

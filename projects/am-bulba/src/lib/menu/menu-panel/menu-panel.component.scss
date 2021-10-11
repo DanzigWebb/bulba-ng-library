@@ -9,4 +9,9 @@
 
 .am-menu-panel-box {
     z-index: 99999;
+	
+	&__wrapper {
+		background: #fff;
+		min-width: 180px;
+	}
 }

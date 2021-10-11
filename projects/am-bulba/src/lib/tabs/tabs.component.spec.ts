@@ -5,6 +5,8 @@ import { Component, ViewChild } from "@angular/core";
 import { TabsModule } from "./tabs.module";
 import { CommonModule } from "@angular/common";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { TabsPositionType, TabsSizeType, TabsViewType } from "./tabs.type";
+import { FormControl, ReactiveFormsModule } from "@angular/forms";
 
 const TAB_ITEMS = [
   {
@@ -43,12 +45,18 @@ describe('TabsComponent', () => {
   let component: TabsTestComponent;
   let fixture: ComponentFixture<TabsTestComponent>;
 
+  const getTabs = (): HTMLElement => fixture.nativeElement.querySelector('.tabs');
   const getLabels = (): HTMLElement[] => fixture.nativeElement.querySelectorAll('.tabs ul li');
   const getTabContent = (): HTMLElement => fixture.nativeElement.querySelector('.tab-content');
 
   beforeEach(fakeAsync(() => {
     TestBed.configureTestingModule({
-      imports: [TabsModule, CommonModule, BrowserAnimationsModule],
+      imports: [
+        TabsModule,
+        CommonModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+      ],
       declarations: [TabsTestComponent],
     });
 
@@ -99,11 +107,55 @@ describe('TabsComponent', () => {
     content = getTabContent();
     expect(content.innerText.includes(secondContent)).toBeTruthy();
   });
+
+  it('should set position props', () => {
+    const position: TabsPositionType = 'is-centered';
+    component.position = position;
+    fixture.detectChanges();
+
+    expect(getTabs().classList.contains(position)).toBeTruthy();
+  });
+
+  it('should set size props', () => {
+    const size: TabsSizeType = 'is-small';
+    component.size = size;
+    fixture.detectChanges();
+
+    expect(getTabs().classList.contains(size)).toBeTruthy();
+  });
+
+  it('should set viewType props', () => {
+    const view: TabsViewType = 'is-boxed';
+    component.viewType = view;
+    fixture.detectChanges();
+
+    expect(getTabs().classList.contains(view)).toBeTruthy();
+  });
+
+  it('should implement form control', () => {
+    const index = 2;
+    component.control.setValue(index);
+    fixture.detectChanges();
+
+    const labels = getLabels()[index];
+    const contentText = TAB_ITEMS[index].content.text;
+    let content = getTabContent();
+
+    expect(content.innerText.includes(contentText)).toBeTruthy();
+    expect(labels.classList.contains('is-active')).toBeTruthy();
+  });
 });
 
 @Component({
   template: `
-      <am-tabs-group #tabsGroup>
+      <am-tabs-group
+          #tabsGroup
+          [formControl]="control"
+          [position]="position"
+          [size]="size"
+          [viewType]="viewType"
+          [rounded]="rounded"
+      >
           <am-tab *ngFor="let tab of tabItems">
               <am-tab-label>
                 <span class="icon is-small">
@@ -119,6 +171,13 @@ describe('TabsComponent', () => {
   `,
 })
 class TabsTestComponent {
+
+  position: TabsPositionType | undefined;
+  size: TabsSizeType | undefined;
+  viewType: TabsViewType | undefined;
+  rounded = false;
+
+  control = new FormControl();
 
   @ViewChild('tabsGroup')
   public tabsGroup!: TabsComponent;

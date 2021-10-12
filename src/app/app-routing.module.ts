@@ -7,6 +7,7 @@ import { ToggleButtonsExampleComponent } from "./toggle-buttons-example/toggle-b
 import { ModalExampleComponent } from "./modal-example/modal-example.component";
 import { SelectExampleComponent } from "./select-example/select-example.component";
 import { MenuExampleComponent } from "./menu-example/menu-example.component";
+import { AccordionExampleComponent } from "./accordion-example/accordion-example.component";
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'menu',
     component: MenuExampleComponent,
+  },
+  {
+    path: 'accordion',
+    component: AccordionExampleComponent,
   },
 ];
 

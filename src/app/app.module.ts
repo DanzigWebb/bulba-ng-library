@@ -12,6 +12,7 @@ import { ToggleButtonsExampleModule } from "./toggle-buttons-example/toggle-butt
 import { ModalExampleModule } from "./modal-example/modal-example.module";
 import { SelectExampleModule } from "./select-example/select-example.module";
 import { MenuExampleModule } from "./menu-example/menu-example.module";
+import { AccordionExampleModule } from "./accordion-example/accordion-example.module";
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { MenuExampleModule } from "./menu-example/menu-example.module";
     ModalExampleModule,
     SelectExampleModule,
     MenuExampleModule,
+    AccordionExampleModule,
 
     NavbarModule,
   ],

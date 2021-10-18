@@ -1,8 +1,8 @@
 import { AfterContentInit, Component, ContentChild, InjectionToken, OnInit } from '@angular/core';
-import { InputDirective } from "../input/input.directive";
 import { NgControl } from "@angular/forms";
-import { SelectComponent } from "../select/select.component";
 import { animationError } from "./form-field.animation";
+import { AmFormFieldControl } from "../form-field.type";
+
 
 export const AM_FORM_GROUP = new InjectionToken<FormFieldComponent>('AmFormGroup');
 
@@ -23,10 +23,9 @@ export const AM_FORM_GROUP = new InjectionToken<FormFieldComponent>('AmFormGroup
 export class FormFieldComponent implements OnInit, AfterContentInit {
 
   isLoading = false;
-  control: NgControl | undefined;
+  control: NgControl | null = null;
 
-  @ContentChild(InputDirective) input!: InputDirective;
-  @ContentChild(SelectComponent) select!: SelectComponent;
+  @ContentChild(AmFormFieldControl) formControl!: AmFormFieldControl;
 
   constructor() { }
 
@@ -38,14 +37,6 @@ export class FormFieldComponent implements OnInit, AfterContentInit {
   }
 
   findControl() {
-    if (this.input) {
-      this.control = this.input.control;
-      return;
-    }
-    if (this.select) {
-      this.control = this.select.control;
-      return;
-    }
+    this.control = this.formControl.control
   }
-
 }

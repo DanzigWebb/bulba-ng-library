@@ -16,12 +16,13 @@ import {
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
-import { AmFormFieldControl } from "../form-field.type";
 import { ControlValueAccessor, NgControl } from "@angular/forms";
 import { OptionComponent } from "./option/option.component";
 import { createPopper, Instance } from "@popperjs/core";
 import { DOCUMENT } from "@angular/common";
 import { animate, style, transition, trigger } from "@angular/animations";
+import { AmFormFieldControl } from "../form-field.type";
+
 
 const animationSlide = [
   trigger('slide', [
@@ -102,6 +103,10 @@ class SelectModel {
       provide: AM_SELECT,
       useExisting: SelectComponent,
     },
+    {
+      provide: AmFormFieldControl,
+      useExisting: SelectComponent
+    }
   ],
   animations: [
     ...animationSlide,

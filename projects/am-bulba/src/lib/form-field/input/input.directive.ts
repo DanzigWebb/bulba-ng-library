@@ -6,10 +6,17 @@ import { InputClassesEnum, SIZES } from "./input.classes.enum";
 import { AM_FORM_GROUP, FormFieldComponent } from "../form-field/form-field.component";
 import { AmFormFieldControl } from "../form-field.type";
 
+
 @Directive({
   selector: 'input[amInput]',
   exportAs: 'amInput',
-  providers: [NgModel],
+  providers: [
+    NgModel,
+    {
+      provide: AmFormFieldControl,
+      useExisting: InputDirective,
+    },
+  ],
   host: {
     '[class.is-danger]': '!isValid && control.touched',
   },

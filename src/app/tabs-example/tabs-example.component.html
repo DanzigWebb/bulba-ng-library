@@ -50,14 +50,14 @@
 <hr>
 
 <am-toggle-buttons-group>
-    <am-toggle-button [checked]="true" (click)="position = undefined">Left</am-toggle-button>
-    <am-toggle-button (click)="position = 'is-centered'">Center</am-toggle-button>
-    <am-toggle-button (click)="position = 'is-right'">Right</am-toggle-button>
+    <button amToggleButton [checked]="true" (click)="position = undefined">Left</button>
+    <button amToggleButton (click)="position = 'is-centered'">Center</button>
+    <button amToggleButton (click)="position = 'is-right'">Right</button>
 </am-toggle-buttons-group>
 <hr>
 <am-toggle-buttons-group>
-    <am-toggle-button [checked]="true" (click)="viewType = undefined; rounded = false">Default</am-toggle-button>
-    <am-toggle-button (click)="viewType = 'is-boxed'; rounded = false">Boxed</am-toggle-button>
-    <am-toggle-button (click)="viewType = 'is-toggle'; rounded = false">Toggle</am-toggle-button>
-    <am-toggle-button (click)="rounded = true">Toggle-rounded</am-toggle-button>
+    <button amToggleButton [checked]="true" (click)="viewType = undefined; rounded = false">Default</button>
+    <button amToggleButton (click)="viewType = 'is-boxed'; rounded = false">Boxed</button>
+    <button amToggleButton (click)="viewType = 'is-toggle'; rounded = false">Toggle</button>
+    <button amToggleButton (click)="rounded = true">Toggle-rounded</button>
 </am-toggle-buttons-group>

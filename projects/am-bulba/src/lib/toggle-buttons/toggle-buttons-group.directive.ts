@@ -60,7 +60,7 @@ export class ToggleButtonsEvent {
     },
   ],
   host: {
-    'class': 'field has-addons',
+    'class': 'btn-group',
   },
 })
 export class ToggleButtonsGroupDirective implements ControlValueAccessor, AfterContentInit {

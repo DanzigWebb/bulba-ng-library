@@ -28,10 +28,10 @@
     Placement:
 
     <am-toggle-buttons-group [(ngModel)]="placement">
-        <am-toggle-button (click)="placement = 'bottom-start'" value="bottom-start">bottom-start</am-toggle-button>
-        <am-toggle-button (click)="placement = 'bottom'" value="bottom">bottom</am-toggle-button>
-        <am-toggle-button (click)="placement = 'left'" value="left">left</am-toggle-button>
-        <am-toggle-button (click)="placement = 'right'" value="right">right</am-toggle-button>
-        <am-toggle-button (click)="placement = 'top'" value="top">top</am-toggle-button>
+        <button amToggleButton (click)="placement = 'bottom-start'" value="bottom-start">bottom-start</button>
+        <button amToggleButton (click)="placement = 'bottom'" value="bottom">bottom</button>
+        <button amToggleButton (click)="placement = 'left'" value="left">left</button>
+        <button amToggleButton (click)="placement = 'right'" value="right">right</button>
+        <button amToggleButton (click)="placement = 'top'" value="top">top</button>
     </am-toggle-buttons-group>
 </div>

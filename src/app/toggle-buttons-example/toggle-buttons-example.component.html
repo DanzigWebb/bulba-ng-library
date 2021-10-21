@@ -5,14 +5,14 @@
     [formControl]="control"
     [multiply]="true"
 >
-    <am-toggle-button
+    <button amToggleButton
         *ngFor="let btn of buttons"
         [value]="btn.title"
         [checked]="btn.checked"
         [disabled]="!!btn.disabled"
     >
         <span>{{btn.title}}</span>
-    </am-toggle-button>
+    </button>
 </am-toggle-buttons-group>
 
 <div>
@@ -21,8 +21,8 @@
 
 <hr>
 
-<button class="button" (click)="control.reset()">Clear</button>
-<button class="button" (click)="control.disabled
+<button class="btn" (click)="control.reset()">Clear</button>
+<button class="btn" (click)="control.disabled
     ? control.enable()
     : control.disable()"
 >

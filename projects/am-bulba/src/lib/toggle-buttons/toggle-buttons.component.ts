@@ -2,12 +2,15 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Input, O
 import { AM_BUTTON_TOGGLE_GROUP, ToggleButtonsGroupDirective } from "./toggle-buttons-group.directive";
 
 @Component({
-  selector: 'am-toggle-button',
+  selector: 'button[amToggleButton]',
   templateUrl: './toggle-buttons.component.html',
   styleUrls: ['./toggle-buttons.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
-    'class': 'control',
+    'class': 'btn',
+    '(click)': 'onClick()',
+    '[class.btn-active]': 'checked',
+    '[disabled]': 'disabled'
   },
 })
 export class ToggleButtonsComponent implements OnInit {

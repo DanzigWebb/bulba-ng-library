@@ -10,6 +10,9 @@ import { AM_BUTTON_TOGGLE_GROUP, ToggleButtonsGroupDirective } from "./toggle-bu
     'class': 'btn',
     '(click)': 'onClick()',
     '[class.btn-active]': 'checked',
+    '[class.btn-xs]': 'size === "xs"',
+    '[class.btn-sm]': 'size === "sm"',
+    '[class.btn-lg]': 'size === "lg"',
     '[disabled]': 'disabled'
   },
 })
@@ -18,6 +21,7 @@ export class ToggleButtonsComponent implements OnInit {
 
   @Input() value: any;
   @Input() disabled = false;
+  @Input() size: 'xs' | 'sm' | 'lg' | undefined;
 
   @Input()
   get checked() { return this._checked; };

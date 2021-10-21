@@ -38,16 +38,16 @@
 
 <h2>Sizes</h2>
 <am-toggle-buttons-group>
-    <button amToggleButton (click)="size = 'tab-xs'">Size: xs</button>
-    <button amToggleButton (click)="size = 'tab-sm'">Size: sm</button>
-    <button amToggleButton [checked]="true" (click)="size = undefined">Size: Default</button>
-    <button amToggleButton (click)="size = 'tab-lg'">Size: lg</button>
+    <button amToggleButton size="xs" (click)="size = 'xs'">Size: xs</button>
+    <button amToggleButton size="xs" (click)="size = 'sm'">Size: sm</button>
+    <button amToggleButton size="xs" [checked]="true" (click)="size = undefined">Size: Default</button>
+    <button amToggleButton size="xs" (click)="size = 'lg'">Size: lg</button>
 </am-toggle-buttons-group>
 
 <h2>Views</h2>
 <am-toggle-buttons-group>
-    <button amToggleButton (click)="viewType = undefined; rounded = false">Default</button>
-    <button amToggleButton (click)="viewType = 'tabs-bordered'; rounded = false">Bordered</button>
-    <button amToggleButton [checked]="true" (click)="viewType = 'tabs-lifted'; rounded = false">Lifted</button>
-    <button amToggleButton (click)="viewType = 'tabs-boxed'">Boxed</button>
+    <button amToggleButton size="xs" (click)="viewType = undefined; rounded = false">Default</button>
+    <button amToggleButton size="xs" (click)="viewType = 'tabs-bordered'; rounded = false">Bordered</button>
+    <button amToggleButton size="xs" [checked]="true" (click)="viewType = 'tabs-lifted'; rounded = false">Lifted</button>
+    <button amToggleButton size="xs" (click)="viewType = 'tabs-boxed'">Boxed</button>
 </am-toggle-buttons-group>

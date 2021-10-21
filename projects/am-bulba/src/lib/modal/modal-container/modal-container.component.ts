@@ -64,7 +64,7 @@ export class ModalContainerComponent implements ModalContainer, OnDestroy {
   constructor(
     @Inject(DOCUMENT) private doc: Document
   ) {
-    this.doc.documentElement.classList.add('is-clipped');
+    this.doc.documentElement.classList.add('overflow-hidden');
   }
 
   close() {
@@ -72,6 +72,6 @@ export class ModalContainerComponent implements ModalContainer, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.doc.documentElement.classList.remove('is-clipped');
+    this.doc.documentElement.classList.remove('overflow-hidden');
   }
 }

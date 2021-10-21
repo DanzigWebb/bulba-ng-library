@@ -10,10 +10,10 @@ import { animate, style, transition, trigger } from "@angular/animations";
     trigger('slide', [
       transition(':enter', [
         style({
-          transform: 'translateY(-60px)',
+          transform: 'translateY(30px)',
           opacity: 0,
         }),
-        animate('150ms cubic-bezier(0, 0, 0.2, 1)', style({
+        animate('120ms cubic-bezier(.4,0,.2,1)', style({
           transform: 'translateY(0)',
           opacity: 1,
         })),

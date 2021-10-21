@@ -81,6 +81,12 @@ export class MenuTriggerDirective implements OnInit {
     this.zone.runOutsideAngular(() => {
       this.popperRef = this.popperRef = createPopper(trigger, panel, {
         placement: this.placement,
+        modifiers: [{
+            name: 'offset',
+            options: {
+              offset: [0, 5],
+            },
+          }],
       });
     });
   }

@@ -20,7 +20,7 @@ const animationSlide = [
 @Component({
   selector: 'am-tab',
   templateUrl: './tab.component.html',
-  styleUrls: ['./tab.component.css'],
+  styleUrls: ['./tab.component.scss'],
   animations: animationSlide,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

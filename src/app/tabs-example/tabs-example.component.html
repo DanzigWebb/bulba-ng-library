@@ -1,63 +1,53 @@
-<h2 class="title is-2">Tabs</h2>
-<hr>
+<h2 class="text-3xl font-bold mb-4">Tabs</h2>
 
-<am-tabs-group
-    [size]="size"
-    [position]="position"
-    [viewType]="viewType"
-    [rounded]="rounded"
-    [formControl]="tabControl"
->
-    <am-tab label="Tab 1">
-        <am-tab-label>
-                <span class="icon is-small">
-                    <i class="fas fa-image" aria-hidden="true"></i>
-                </span> <span>Pictures</span>
-        </am-tab-label>
-        <h3><i class="fas fa-image" aria-hidden="true"></i> tab content with Pictures</h3>
-    </am-tab>
-    <am-tab label="Tab 2">
-        <am-tab-label>
-                <span class="icon is-small">
-                    <i class="fas fa-music" aria-hidden="true"></i>
-                </span> <span>Music</span>
-        </am-tab-label>
-
-        <h3><i class="fas fa-music" aria-hidden="true"></i> tab content with Music</h3>
-    </am-tab>
-    <am-tab label="Tab 3">
-        <am-tab-label>
-                <span class="icon is-small">
-                    <i class="fas fa-film" aria-hidden="true"></i>
-                </span> <span>Videos</span>
-        </am-tab-label>
-        <h3><i class="fas fa-film" aria-hidden="true"></i> tab content with Videos</h3>
-    </am-tab>
-</am-tabs-group>
-
-<br>
+<div class="group mb-4">
+    <am-tabs-group
+        [size]="size"
+        [viewType]="viewType"
+        [formControl]="tabControl"
+    >
+        <am-tab label="Tab 1">
+            <am-tab-label>
+                <span>Pictures</span>
+            </am-tab-label>
+            <h3><i class="fas fa-image" aria-hidden="true"></i> tab content with Pictures</h3>
+        </am-tab>
+        <am-tab label="Tab 2">
+            <am-tab-label>
+                <span>Music</span>
+            </am-tab-label>
+            <h3><i class="fas fa-music" aria-hidden="true"></i> tab content with Music</h3>
+        </am-tab>
+        <am-tab label="Tab 3">
+            <am-tab-label>
+                <span>Videos</span>
+            </am-tab-label>
+            <h3><i class="fas fa-film" aria-hidden="true"></i> tab content with Videos</h3>
+        </am-tab>
+    </am-tabs-group>
+</div>
 
 <pre>
     value: {{tabControl.value}}
 </pre>
 
-<hr>
 
-<button class="button" (click)="tabControl.setValue(1)">Set first</button>
-<button class="button" (click)="tabControl.disable()">Disable</button>
-<button class="button" (click)="tabControl.enable()">Enable</button>
+<button class="btn" (click)="tabControl.setValue(1)">Set first</button>
+<button class="btn" (click)="tabControl.disable()">Disable</button>
+<button class="btn" (click)="tabControl.enable()">Enable</button>
 
-<hr>
-
+<h2>Sizes</h2>
 <am-toggle-buttons-group>
-    <button amToggleButton [checked]="true" (click)="position = undefined">Left</button>
-    <button amToggleButton (click)="position = 'is-centered'">Center</button>
-    <button amToggleButton (click)="position = 'is-right'">Right</button>
+    <button amToggleButton (click)="size = 'tab-xs'">Size: xs</button>
+    <button amToggleButton (click)="size = 'tab-sm'">Size: sm</button>
+    <button amToggleButton [checked]="true" (click)="size = undefined">Size: Default</button>
+    <button amToggleButton (click)="size = 'tab-lg'">Size: lg</button>
 </am-toggle-buttons-group>
-<hr>
+
+<h2>Views</h2>
 <am-toggle-buttons-group>
-    <button amToggleButton [checked]="true" (click)="viewType = undefined; rounded = false">Default</button>
-    <button amToggleButton (click)="viewType = 'is-boxed'; rounded = false">Boxed</button>
-    <button amToggleButton (click)="viewType = 'is-toggle'; rounded = false">Toggle</button>
-    <button amToggleButton (click)="rounded = true">Toggle-rounded</button>
+    <button amToggleButton (click)="viewType = undefined; rounded = false">Default</button>
+    <button amToggleButton (click)="viewType = 'tabs-bordered'; rounded = false">Bordered</button>
+    <button amToggleButton [checked]="true" (click)="viewType = 'tabs-lifted'; rounded = false">Lifted</button>
+    <button amToggleButton (click)="viewType = 'tabs-boxed'">Boxed</button>
 </am-toggle-buttons-group>

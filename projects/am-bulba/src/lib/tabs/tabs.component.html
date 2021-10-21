@@ -1,32 +1,31 @@
-<div class="tabs"
-     *ngIf="tabs"
-     [class.is-boxed]="viewType === 'is-boxed'"
-     [class.is-toggle]="viewType === 'is-toggle'"
-     [class.is-toggle-rounded]="rounded"
+<div class="tabs" *ngIf="tabs" [class.tabs-boxed]="viewType === 'tabs-boxed'">
+    <a
+        *ngFor="let tab of tabs"
+        class="tab"
 
-     [class.is-centered]="position === 'is-centered'"
-     [class.is-right]="position === 'is-right'"
+        [class.tab-active]="tab.active"
+        [class.is-disabled]="tab.labelComponent?.disabled"
+        [class.tab-lifted]="viewType === 'tabs-lifted'"
+        [class.tab-bordered]="viewType === 'tabs-bordered'"
 
-     [class.is-small]="size === 'is-small'"
-     [class.is-medium]="size === 'is-medium'"
-     [class.is-large]="size === 'is-large'"
->
-    <ul>
-        <li *ngFor="let tab of tabs"
-            [class.is-active]="tab.active"
-            [class.is-disabled]="tab.labelComponent?.disabled"
-            (click)="!tab.labelComponent?.disabled && selectTab(tab)"
-        >
-            <ng-container *ngIf="tab.labelComponent?.labelContent; else defaultLabel">
-                <ng-container
-                    *ngTemplateOutlet="tab.labelComponent?.labelContent || null">
-                </ng-container>
+        [class.tab-xs]="size === 'tab-xs'"
+        [class.tab-sm]="size === 'tab-sm'"
+        [class.tab-lg]="size === 'tab-lg'"
+
+        (click)="!tab.labelComponent?.disabled && selectTab(tab)"
+    >
+        <ng-container *ngIf="tab.labelComponent?.labelContent; else defaultLabel">
+            <ng-container
+                *ngTemplateOutlet="tab.labelComponent?.labelContent || null">
             </ng-container>
-            <ng-template #defaultLabel>
-                <label><a>{{tab.label}}</a></label>
-            </ng-template>
-        </li>
-    </ul>
+        </ng-container>
+
+        <ng-template #defaultLabel>
+            {{tab.label}}
+        </ng-template>
+    </a>
 </div>
 
-<ng-content></ng-content>
+<div class="pt-3 pb-3">
+    <ng-content></ng-content>
+</div>

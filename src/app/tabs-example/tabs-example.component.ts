@@ -13,7 +13,7 @@ export class TabsExampleComponent implements OnInit {
 
   position: TabsPositionType | undefined;
   size: TabsSizeType | undefined;
-  viewType: TabsViewType | undefined;
+  viewType: TabsViewType | undefined = 'tabs-lifted';
   rounded = false;
 
   constructor() { }

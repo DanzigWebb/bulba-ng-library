@@ -20,13 +20,12 @@ const animations = [
   trigger('box', [
     transition(':enter', [
       style({
-        transform: 'scale(0.7)',
+        transform: 'translateY(40px)',
+        opacity: 0
       }),
-      animate('100ms ease-out', style({
-        transform: 'scale(1.1)',
-      })),
-      animate('100ms ease-out', style({
-        transform: 'scale(1)',
+      animate('160ms cubic-bezier(.4,0,.2,1)', style({
+        transform: 'translateY(0)',
+        opacity: 1,
       })),
     ]),
   ]),
@@ -35,7 +34,7 @@ const animations = [
       style({
         opacity: 0,
       }),
-      animate('85ms ease-in', style({
+      animate('120ms ease-in', style({
         opacity: 1,
       })),
     ]),
@@ -44,9 +43,8 @@ const animations = [
 
 @Component({
   template: `
-      <div class="modal is-active">
-          <div class="modal-background" [@backdrop] (click)="close()"></div>
-          <div [@box]>
+      <div class="modal modal-open" [@backdrop] (click)="close()">
+          <div [@box] class="modal-box" (click)="$event.stopPropagation()">
               <ng-template #modalContainer></ng-template>
           </div>
       </div>

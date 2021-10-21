@@ -8,8 +8,6 @@ import { ModalContext, ModalService } from "../../../projects/am-bulba/src/lib/m
 })
 export class ModalExampleComponent implements OnInit {
 
-  dialogCheckedItem = '';
-
   constructor(
     private modalService: ModalService,
   ) { }
@@ -17,12 +15,12 @@ export class ModalExampleComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  add() {
+  open() {
     const modalTitle = 'Check your item';
     const openedModal = this.modalService.open<string>(ExampleDialog, modalTitle);
 
-    openedModal.subscribe((checkedItem) => {
-      this.dialogCheckedItem = checkedItem;
+    openedModal.subscribe(() => {
+      console.log('is closed!');
     });
   }
 
@@ -32,39 +30,19 @@ export class ModalExampleComponent implements OnInit {
 
 @Component({
   template: `
-      <div class="modal-content">
-          <header class="modal-card-head">
-              <p class="modal-card-title">{{context.data}}</p>
-              <button class="delete" aria-label="close" (click)="close()"></button>
-          </header>
-          <div class="card">
-              <am-panel>
-                  <am-panel-block (click)="closeWithData('bulma')">
-                    <span class="panel-icon">
-                        <i class="fas fa-book" aria-hidden="true"></i>
-                    </span> <span>bulma</span>
-                  </am-panel-block>
-                  <am-panel-block (click)="closeWithData('marksheet')">
-                    <span class="panel-icon">
-                        <i class="fas fa-book" aria-hidden="true"></i>
-                    </span> <span>marksheet</span>
-                  </am-panel-block>
-              </am-panel>
-          </div>
+      <p>Enim dolorem dolorum omnis atque necessitatibus. Consequatur aut adipisci qui iusto illo eaque. Consequatur repudiandae et. Nulla ea quasi eligendi. Saepe velit autem minima.</p>
+      <div class="modal-action">
+          <label for="my-modal-2" class="btn btn-primary" (click)="close()">Accept</label>
+          <label for="my-modal-2" class="btn" (click)="close()">Close</label>
       </div>
-      <button class="modal-close is-large" aria-label="close" (click)="close()"></button>
   `,
 })
 export class ExampleDialog {
   title = '';
 
   constructor(
-    public context: ModalContext<string>,
+    public context: ModalContext<string>
   ) {
-  }
-
-  closeWithData(data: string) {
-    this.context.close(data);
   }
 
   close() {

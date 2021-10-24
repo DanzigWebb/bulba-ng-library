@@ -1,0 +1,99 @@
+<h2 class="text-3xl font-bold mb-10">Input</h2>
+
+
+<div class="my-4">
+    <p class="pt-4 text-xs opacity-60">Default input without border</p>
+</div>
+
+<div class="p-10 card bg-base-200" style="max-width: 400px;">
+    <am-form-field>
+        <label class="label"> <span class="label-text">Username</span> </label>
+        <input type="text" amInput placeholder="placeholder">
+        <am-form-error>Required!</am-form-error>
+    </am-form-field>
+</div>
+
+<div class="my-4">
+    <p class="pt-4 text-xs opacity-60">Default input with border</p>
+</div>
+
+<div class="p-10 card bg-base-200" style="max-width: 400px;">
+    <am-form-field>
+        <label class="label"> <span class="label-text">Username</span> </label>
+        <input type="text" amInput placeholder="placeholder" [bordered]="true">
+    </am-form-field>
+</div>
+
+<div class="my-4">
+    <p class="pt-4 text-xs opacity-60">Default input into control</p>
+</div>
+
+<div class="p-10 card bg-base-200" style="max-width: 400px;">
+    <label class="label"> <span class="label-text">With validation</span> </label>
+    <am-form-field>
+        <input
+            type="text"
+            amInput
+            placeholder="placeholder"
+            [bordered]="true"
+        >
+        <am-form-error>Required!</am-form-error>
+    </am-form-field>
+</div>
+
+<div class="my-4">
+    <p class="pt-4 text-xs opacity-60">Default input into control</p>
+</div>
+
+<div class="p-10 card bg-base-200" style="max-width: 400px;">
+    <label class="label"> <span class="label-text">With validation</span> </label>
+    <am-form-field>
+        <input
+            type="text"
+            amInput
+            placeholder="placeholder"
+            [formControl]="control"
+            [bordered]="true"
+        >
+        <am-form-error>Required!</am-form-error>
+    </am-form-field>
+</div>
+
+<div class="my-4">
+    <p class="pt-4 text-xs opacity-60">Sizes</p>
+</div>
+
+<div class="p-10 card bg-base-200" style="max-width: 400px;">
+    <am-form-field>
+        <input
+            type="text"
+            amInput
+            size="xs"
+            placeholder="placeholder"
+            [bordered]="true"
+        >
+        <br>
+        <input
+            type="text"
+            amInput
+            size="sm"
+            placeholder="placeholder"
+            [bordered]="true"
+        >
+        <br>
+        <input
+            type="text"
+            amInput
+            placeholder="placeholder"
+            [bordered]="true"
+        >
+        <br>
+        <input
+            type="text"
+            amInput
+            size="lg"
+            placeholder="placeholder"
+            [bordered]="true"
+        >
+    </am-form-field>
+</div>

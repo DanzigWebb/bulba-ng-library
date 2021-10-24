@@ -1,8 +1,9 @@
 export enum InputClassesEnum {
-  base    = 'input',
-  error   = 'is-danger',
-  rounded = 'is-rounded',
-  loading = 'is-loading',
+  base     = 'input',
+  error    = 'input-error',
+  bordered = 'input-bordered',
+  rounded  = 'is-rounded',
+  loading  = 'is-loading',
 }
 
 export const SIZES = {

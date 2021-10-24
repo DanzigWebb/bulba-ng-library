@@ -13,6 +13,7 @@ import { ModalExampleModule } from "./modal-example/modal-example.module";
 import { SelectExampleModule } from "./select-example/select-example.module";
 import { MenuExampleModule } from "./menu-example/menu-example.module";
 import { AccordionExampleModule } from "./accordion-example/accordion-example.module";
+import { InputExampleModule } from "./input-example/input-example.module";
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import { AccordionExampleModule } from "./accordion-example/accordion-example.mo
     SelectExampleModule,
     MenuExampleModule,
     AccordionExampleModule,
+    InputExampleModule,
 
     NavbarModule,
   ],

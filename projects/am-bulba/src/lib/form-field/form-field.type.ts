@@ -7,3 +7,5 @@ export abstract class AmFormFieldControl {
   readonly control!: NgControl | null;
 }
 
+
+export type FormInputSize = 'xs' | 'sm' | 'md' | 'lg' | '';

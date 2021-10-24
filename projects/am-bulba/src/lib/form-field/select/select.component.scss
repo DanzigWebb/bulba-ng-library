@@ -3,6 +3,7 @@
 	position: relative;
 	overflow: hidden;
 	
+	
 	a {
 		cursor: default;
 		text-decoration: none;
@@ -13,35 +14,26 @@
 		cursor: pointer;
 	}
 	
-	&-placeholder {
-		color: rgba(54, 54, 54, 0.3);
-	}
-	
-	&-tags {
+	&-content {
 		width: 100%;
 		position: absolute;
-		left: 3em;
 		top: 0;
 		bottom: 0;
 		right: 0;
 	}
 }
 
-.select-overlay {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-	z-index: 99999;
-}
 
-.select-dropdown {
-	z-index: 99999;
-}
-
-.select-box {
-    background: #fff;
+.am-select-dropdown {
+	
+	&-overlay {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 99999;
+	}
 }
 
 input {

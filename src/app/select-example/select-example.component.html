@@ -1,31 +1,16 @@
-<h2 class="title is-2">Form Group | select</h2>
-<hr>
+<h2 class="text-3xl font-bold mb-4">Form Group | select</h2>
+<br><br><br>
 
 <div style="max-width: 320px">
     <am-form-field>
-            <span class="icon is-small is-left">
-                <i class="fas fa-arrows-alt"></i>
-            </span>
         <am-select
             placeholder="Select position"
-            [formControl]="select"
+
             (valueChange)="onChange($event)"
         >
-            <am-option value="Left" [checked]="true">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-align-left"></i>
-                    </span> Left
-            </am-option>
-            <am-option value="Center">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-align-center"></i>
-                    </span> Center
-            </am-option>
-            <am-option value="Right">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-align-right"></i>
-                    </span> Right
-            </am-option>
+            <am-option value="Left">Left</am-option>
+            <am-option value="Center">Center</am-option>
+            <am-option value="Right">Right</am-option>
         </am-select>
 
         <am-form-error>Is Required field</am-form-error>
@@ -36,41 +21,24 @@
 <div>
     <pre>value: {{select.value}}</pre>
 </div>
-<hr>
+<br>
 
-<button class="button" (click)="select.setValue('Center')">Check center</button>
-<button class="button" (click)="select.reset()">Reset</button>
+<button class="btn btn-sm" (click)="select.setValue('Center')">Check center</button>
+<button class="btn btn-sm" (click)="select.reset()">Reset</button>
 
-<hr>
-<h2 class="title is-2">Form Group | select multiply</h2>
-<hr>
+<h2 class="text-3xl font-bold my-4">Form Group | select multiply</h2>
 
 <div style="max-width: 320px">
     <am-form-field>
-            <span class="icon is-small is-left">
-                <i class="fas fa-arrows-alt"></i>
-            </span>
         <am-select
             placeholder="Multiply select"
             [formControl]="multipleSelect"
             (valueChange)="onChange($event)"
             [multiply]="true"
         >
-            <am-option value="Left" [checked]="true">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-align-left"></i>
-                    </span> Left
-            </am-option>
-            <am-option value="Center" [checked]="true">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-align-center"></i>
-                    </span> Center
-            </am-option>
-            <am-option value="Right">
-                    <span class="icon is-small is-left">
-                        <i class="fas fa-align-right"></i>
-                    </span> Right
-            </am-option>
+            <am-option value="Left" [checked]="true">Left</am-option>
+            <am-option value="Center" [checked]="true">Center</am-option>
+            <am-option value="Right">Right</am-option>
         </am-select>
 
         <am-form-error>Is Required field</am-form-error>
@@ -81,7 +49,7 @@
 <div>
     <pre>value: {{multipleSelect.value}}</pre>
 </div>
-<hr>
+<br>
 
-<button class="button" (click)="multipleSelect.setValue(['Center'])">Check center</button>
-<button class="button" (click)="multipleSelect.reset()">Reset</button>
+<button class="btn btn-sm" (click)="multipleSelect.setValue(['Center'])">Check center</button>
+<button class="btn btn-sm" (click)="multipleSelect.reset()">Reset</button>

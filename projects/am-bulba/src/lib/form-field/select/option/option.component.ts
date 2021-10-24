@@ -4,7 +4,7 @@ import { AM_SELECT, SelectComponent } from "../select.component";
 @Component({
   selector: 'am-option',
   templateUrl: './option.component.html',
-  styleUrls: ['./option.component.css'],
+  styleUrls: ['./option.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OptionComponent implements OnInit {

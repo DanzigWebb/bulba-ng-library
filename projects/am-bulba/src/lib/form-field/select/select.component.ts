@@ -11,8 +11,10 @@ import {
   Input,
   NgZone,
   OnInit,
+  Optional,
   Output,
   QueryList,
+  Self,
   TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
@@ -53,20 +55,22 @@ const animationSlide = [
         transform: 'translateX(-20px) scaleY(0.8)',
         opacity: 0,
       }),
-      animate('150ms cubic-bezier(0, 0, 0.2, 1)', style({
+      animate('150ms cubic-bezier(.4,0,.2,1)', style({
         transform: 'translateX(0) scaleY(1)',
         opacity: 1,
       })),
     ]),
     transition(':leave', [
       style({
-        transform: 'translateX(0) scaleY(1)',
+        width: '*',
         opacity: 1,
+        overflow: 'hidden',
       }),
       animate('150ms cubic-bezier(0, 0, 0.2, 1)', style({
+        marginRight: '-25px',
         width: 0,
-        marginRight: -10,
         opacity: 0,
+        overflow: 'hidden',
       })),
     ]),
   ]),
@@ -105,8 +109,8 @@ class SelectModel {
     },
     {
       provide: AmFormFieldControl,
-      useExisting: SelectComponent
-    }
+      useExisting: SelectComponent,
+    },
   ],
   animations: [
     ...animationSlide,
@@ -119,6 +123,8 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   @Input() placeholder = '';
   @Input() multiply = false;
+
+  control: NgControl;
 
   opened = false;
   selectModel = new SelectModel();
@@ -143,9 +149,12 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
     private vcr: ViewContainerRef,
     private zone: NgZone,
     private cdRef: ChangeDetectorRef,
-    public readonly control: NgControl,
+    @Optional() @Self() control: NgControl,
   ) {
-    control.valueAccessor = this;
+    this.control = control;
+    if (this.control) {
+      this.control.valueAccessor = this;
+    }
   }
 
   ngOnInit(): void {
@@ -167,20 +176,20 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       if (option.checked) {
         this.selectModel.add(option);
       }
-    })
+    });
 
     Promise.resolve().then(() => {
       this.updateValue();
       this._controlValueAccessorChangeFn(this.value);
       this.cdRef.markForCheck();
-    })
+    });
   }
 
   open(dropdownTpl: TemplateRef<any>, trigger: HTMLElement): void {
     this.isDropdownShow = true;
     this.view = this.vcr.createEmbeddedView(dropdownTpl);
     this.dropdownRef = <HTMLElement>this.view.rootNodes[0];
-    const dropdown = <HTMLElement>this.dropdownRef.querySelector('.select-dropdown');
+    const dropdown = <HTMLElement>this.dropdownRef.querySelector('.am-select-dropdown');
 
     this.doc.body.appendChild(this.dropdownRef);
 

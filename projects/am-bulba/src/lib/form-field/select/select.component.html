@@ -1,29 +1,40 @@
-<div class="input am-select"
-     [class.is-danger]="control?.invalid && control?.touched"
+<div class="select select-bordered w-full max-w-xs am-select"
+     [class.select-error]="control?.invalid && control?.touched"
      (click)="open(dropdown, trigger)"
      #trigger
 >
-    <span *ngIf="!value || !value?.length" class="am-select-placeholder" [innerHTML]="placeholder || ''"></span>
+    <span
+        *ngIf="!value || !value?.length"
+        class="am-select-content left-3 flex items-center text-xs opacity-60"
+        [innerHTML]="placeholder || ''"
+    >
+    </span>
     <ng-container *ngIf="(value || value?.length) && isArray(value); else singleSelect">
-        <div class="tags has-addons am-select-tags">
-            <ng-container *ngFor="let tag of value">
-                <a class="tag is-link" [@slideLeft]>{{tag}}</a>
-                <a class="tag is-delete" [@slideLeft] (click)="$event.stopPropagation(); checkOptionByValue(tag)"></a>
-            </ng-container>
+        <div class="am-select-content flex items-center left-3">
+            <div *ngFor="let tag of value" class="badge badge-outline mr-2" [@slideLeft]>
+                <a class="tag is-delete" (click)="$event.stopPropagation(); checkOptionByValue(tag)">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 mr-2 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </a>
+                <a class="tag is-link">{{tag}}</a>
+            </div>
         </div>
     </ng-container>
-    <ng-template #singleSelect>{{value}}</ng-template>
+
+    <ng-template #singleSelect>
+        <div class="am-select-content left-3 flex items-center">
+            {{value}}
+        </div>
+    </ng-template>
 </div>
 
 <ng-template #dropdown>
-    <div class="select-dropdown-content">
-        <div class="select-overlay" (click)="close()"></div>
-        <div class="select-dropdown">
-            <aside class="menu panel select-box" *ngIf="isDropdownShow" [@slide]>
-                <ul class="menu-list select-list">
-                    <ng-content></ng-content>
-                </ul>
-            </aside>
+    <div class="am-select-dropdown-overlay" (click)="close()">
+        <div class="am-select-dropdown" (click)="$event.stopPropagation()">
+            <ul class="menu py-3 shadow-lg bg-base-200 rounded-box" *ngIf="isDropdownShow" [@slide]>
+                <ng-content></ng-content>
+            </ul>
         </div>
     </div>
 </ng-template>

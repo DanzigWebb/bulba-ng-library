@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Accordion, AccordionContent, AccordionHeader } from './accordion';
+import { AccordionGroup, AccordionContent, AccordionHeader, Accordion } from './accordion';
 
 
 @NgModule({
   declarations: [
+    AccordionGroup,
     Accordion,
     AccordionHeader,
     AccordionContent,
@@ -13,6 +14,7 @@ import { Accordion, AccordionContent, AccordionHeader } from './accordion';
     CommonModule,
   ],
   exports: [
+    AccordionGroup,
     Accordion,
     AccordionHeader,
     AccordionContent,

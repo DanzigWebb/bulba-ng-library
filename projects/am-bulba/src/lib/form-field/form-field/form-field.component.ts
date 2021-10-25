@@ -17,8 +17,8 @@ export const AM_FORM_GROUP = new InjectionToken<FormFieldComponent>('AmFormGroup
     },
   ],
   animations: [
-    ...animationError
-  ]
+    ...animationError,
+  ],
 })
 export class FormFieldComponent implements OnInit, AfterContentInit {
 
@@ -37,6 +37,6 @@ export class FormFieldComponent implements OnInit, AfterContentInit {
   }
 
   findControl() {
-    this.control = this.formControl.control
+    this.control = this.formControl.control;
   }
 }

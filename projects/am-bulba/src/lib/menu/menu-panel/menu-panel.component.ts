@@ -18,6 +18,16 @@ import { animate, style, transition, trigger } from "@angular/animations";
           opacity: 1,
         })),
       ]),
+      transition(':leave', [
+        style({
+          transform: 'translateY(0)',
+          opacity: 1,
+        }),
+        animate('120ms cubic-bezier(.4,0,.2,1)', style({
+          transform: 'translateY(30px)',
+          opacity: 0,
+        })),
+      ]),
     ]),
   ]
 })
@@ -27,6 +37,7 @@ export class MenuPanelComponent implements OnInit {
 
   @Output() onClose = new EventEmitter();
 
+  isShow = true;
 
   get instance() {
     return this;
@@ -38,6 +49,11 @@ export class MenuPanelComponent implements OnInit {
   }
 
   close() {
+    this.isShow = false;
+  }
+
+  emitClose() {
     this.onClose.emit();
+    this.isShow = true;
   }
 }

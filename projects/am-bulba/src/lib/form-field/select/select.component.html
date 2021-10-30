@@ -33,7 +33,7 @@
     <div class="am-select-dropdown-overlay" (click)="close()">
         <div class="am-select-dropdown" (click)="$event.stopPropagation()">
             <ul class="menu py-3 shadow-lg bg-base-200 rounded-box" *ngIf="isDropdownShow" [@slide]>
-                <ng-content></ng-content>
+                <ng-content select="am-option"></ng-content>
             </ul>
         </div>
     </div>

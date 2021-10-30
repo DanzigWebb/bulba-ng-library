@@ -1,5 +1,16 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, Input, OnInit, Optional } from '@angular/core';
-import { AM_SELECT, SelectComponent } from "../select.component";
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  Inject,
+  InjectionToken,
+  Input,
+  OnInit,
+  Optional,
+} from '@angular/core';
+import { AmOptionGroup } from './option.group';
+
+export const AM_OPTION_GROUP = new InjectionToken<AmOptionGroup>('AmOptionGroup');
 
 @Component({
   selector: 'am-option',
@@ -13,7 +24,7 @@ export class OptionComponent implements OnInit {
   @Input() value = '';
 
   constructor(
-    @Optional() @Inject(AM_SELECT) public select: SelectComponent,
+    @Optional() @Inject(AM_OPTION_GROUP) public group: AmOptionGroup,
     private cdRef: ChangeDetectorRef,
   ) {
   }
@@ -23,7 +34,9 @@ export class OptionComponent implements OnInit {
 
   onClick($event: MouseEvent) {
     $event.preventDefault();
-    this.select.checkOption(this);
+    if (this.group) {
+      this.group.onOptionCheck(this);
+    }
   }
 
   markForCheck() {

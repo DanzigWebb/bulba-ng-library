@@ -15,7 +15,7 @@ import { AmFormFieldControl, FormInputSize } from "../form-field.type";
   ],
   host: {
     'class': 'input',
-    '[class.input-error]': '!isValid && control?.touched',
+    '[class.input-error]': 'control?.invalid && control?.touched',
     '[class.input-bordered]': 'bordered',
     '[class.input-ghost]': 'ghost',
 
@@ -26,8 +26,6 @@ import { AmFormFieldControl, FormInputSize } from "../form-field.type";
   },
 })
 export class InputDirective implements OnInit, OnDestroy, AmFormFieldControl {
-
-  isValid: boolean | undefined;
 
   control: NgControl;
 

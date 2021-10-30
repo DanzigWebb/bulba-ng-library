@@ -19,11 +19,12 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { ControlValueAccessor, NgControl } from "@angular/forms";
-import { OptionComponent } from "./option/option.component";
 import { createPopper, Instance } from "@popperjs/core";
 import { DOCUMENT } from "@angular/common";
 import { animate, style, transition, trigger } from "@angular/animations";
 import { AmFormFieldControl } from "../form-field.type";
+import { AM_OPTION_GROUP, OptionComponent } from '../option/option.component';
+import { AmOptionGroup } from '../option/option.group';
 
 
 const animationSlide = [
@@ -108,6 +109,10 @@ class SelectModel {
       useExisting: SelectComponent,
     },
     {
+      provide: AM_OPTION_GROUP,
+      useExisting: SelectComponent,
+    },
+    {
       provide: AmFormFieldControl,
       useExisting: SelectComponent,
     },
@@ -116,7 +121,7 @@ class SelectModel {
     ...animationSlide,
   ],
 })
-export class SelectComponent implements OnInit, AfterContentInit, ControlValueAccessor, AmFormFieldControl {
+export class SelectComponent implements OnInit, AfterContentInit, ControlValueAccessor, AmFormFieldControl, AmOptionGroup {
 
   @Output() closed = new EventEmitter();
   @Output() valueChange = new EventEmitter<any>();
@@ -279,6 +284,10 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
       this.selectModel.clear();
       this.updateValue();
     }
+  }
+
+  onOptionCheck(option: OptionComponent): void {
+    this.checkOption(option)
   }
 
   emitChange(): void {

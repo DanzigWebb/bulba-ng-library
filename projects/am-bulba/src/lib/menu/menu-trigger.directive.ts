@@ -28,6 +28,7 @@ export class MenuTriggerDirective implements OnInit {
   private popperRef: Instance | null = null;
 
   @Input() placement: Placement = 'bottom-start';
+  @Input() autoWidth = false;
 
   private isOpen = false;
 
@@ -60,6 +61,10 @@ export class MenuTriggerDirective implements OnInit {
       this.view = this.vcr.createEmbeddedView(panelTpl);
       this.panelRef = <HTMLElement>this.view.rootNodes[0];
       const dropdown = <HTMLElement>this.panelRef.querySelector('.am-menu-panel-box');
+
+      if (this.autoWidth) {
+        dropdown.style.minWidth = this.el.nativeElement.scrollWidth + 'px';
+      }
 
       this.doc.body.appendChild(this.panelRef);
 

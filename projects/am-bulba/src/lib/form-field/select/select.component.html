@@ -11,14 +11,9 @@
     </span>
     <ng-container *ngIf="(value || value?.length) && isArray(value); else singleSelect">
         <div class="am-select-content flex items-center left-3">
-            <div *ngFor="let tag of value" class="badge badge-outline mr-2" [@slideLeft]>
-                <a class="tag is-delete" (click)="$event.stopPropagation(); checkOptionByValue(tag)">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 mr-2 stroke-current">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </a>
-                <a class="tag is-link">{{tag}}</a>
-            </div>
+            <span class="am-select-value-text">
+                {{valueAsString}}
+            </span>
         </div>
     </ng-container>
 

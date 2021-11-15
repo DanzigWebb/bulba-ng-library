@@ -141,6 +141,13 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
 
   accessorInitialValue: any | any[] | null = null;
 
+  get valueAsString() {
+    return this.options
+      ?.filter(opt => opt.checked)
+      .map(opt => opt.elementRef.nativeElement.innerText.trim())
+      .join(', ')
+  }
+
   @ContentChildren(forwardRef(() => OptionComponent), {
     descendants: true,
   }) public options: QueryList<OptionComponent> | undefined;

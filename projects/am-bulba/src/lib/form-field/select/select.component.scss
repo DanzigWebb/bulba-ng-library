@@ -1,41 +1,58 @@
 .am-select {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  padding-right: 30px;
+
+  display: flex;
+  align-items: center;
+
+
+  a {
+    cursor: default;
+    text-decoration: none;
+  }
+
+  .is-delete {
+    margin-right: 4px;
     cursor: pointer;
-	position: relative;
-	overflow: hidden;
-	
-	
-	a {
-		cursor: default;
-		text-decoration: none;
-	}
-	
-	.is-delete {
-		margin-right: 4px;
-		cursor: pointer;
-	}
-	
-	&-content {
-		width: 100%;
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		right: 0;
-	}
+  }
+
+  &-value-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    &:not(:last-child):after {
+      content: ',';
+    }
+  }
+
+  &-content {
+    width: 100%;
+    overflow: hidden;
+
+    display:inline-block;
+    vertical-align: middle;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 
 .am-select-dropdown {
-	
-	&-overlay {
-		position: fixed;
-		top: 0;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		z-index: 99999;
-	}
+
+  &-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+  }
 }
 
 input {
-    cursor: pointer;
+  cursor: pointer;
 }

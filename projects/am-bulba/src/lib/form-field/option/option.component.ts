@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ElementRef,
   Inject,
   InjectionToken,
   Input,
@@ -21,11 +22,12 @@ export const AM_OPTION_GROUP = new InjectionToken<AmOptionGroup>('AmOptionGroup'
 export class OptionComponent implements OnInit {
 
   @Input() checked = false;
-  @Input() value = '';
+  @Input() value: any = '';
 
   constructor(
     @Optional() @Inject(AM_OPTION_GROUP) public group: AmOptionGroup,
     private cdRef: ChangeDetectorRef,
+    public elementRef: ElementRef,
   ) {
   }
 

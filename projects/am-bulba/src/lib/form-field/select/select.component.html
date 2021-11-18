@@ -3,31 +3,22 @@
      (click)="open(dropdown, trigger)"
      #trigger
 >
-    <span
-        *ngIf="!value || !value?.length"
-        class="am-select-content left-3 flex items-center text-xs opacity-60"
-        [innerHTML]="placeholder || ''"
-    >
-    </span>
-    <ng-container *ngIf="(value || value?.length) && isArray(value); else singleSelect">
-        <div class="am-select-content flex items-center left-3">
-            <span class="am-select-value-text">
-                {{valueAsString}}
-            </span>
-        </div>
-    </ng-container>
+    <div *ngIf="!valueAsString; else value"
+         class="am-select-content am-select-placeholder left-3 flex items-center text-xs opacity-60"
+         [innerHTML]="placeholder || ''">
+    </div>
 
-    <ng-template #singleSelect>
-        <div class="am-select-content left-3 flex items-center">
-            {{value}}
+    <ng-template #value>
+        <div class="am-select-content flex items-center left-3">
+            <span class="am-select-value-text" [innerHTML]="valueAsString"></span>
         </div>
     </ng-template>
 </div>
 
 <ng-template #dropdown>
     <div class="am-select-dropdown-overlay" (click)="close()">
-        <div class="am-select-dropdown" (click)="$event.stopPropagation()">
-            <ul class="menu py-3 shadow-lg bg-base-200 rounded-box" *ngIf="isDropdownShow" [@slide]>
+        <div class="am-select-dropdown shadow-lg" (click)="$event.stopPropagation()">
+            <ul class="menu py-3 bg-base-200 rounded-box" *ngIf="isDropdownShow" [@slide]>
                 <ng-content select="am-option"></ng-content>
             </ul>
         </div>

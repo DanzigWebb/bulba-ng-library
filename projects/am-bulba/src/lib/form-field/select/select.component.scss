@@ -24,6 +24,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
 
+    background: transparent;
+    border: none;
+
     &:not(:last-child):after {
       content: ',';
     }
@@ -42,6 +45,12 @@
 
 
 .am-select-dropdown {
+  max-height: calc((48px * 4) + 1.5em);
+
+  .menu {
+    overflow-y: scroll;
+    max-height: calc((48px * 4) + 1.5em);
+  }
 
   &-overlay {
     position: fixed;

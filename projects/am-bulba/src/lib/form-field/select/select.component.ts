@@ -50,31 +50,6 @@ const animationSlide = [
       })),
     ]),
   ]),
-  trigger('slideLeft', [
-    transition(':enter', [
-      style({
-        transform: 'translateX(-20px) scaleY(0.8)',
-        opacity: 0,
-      }),
-      animate('150ms cubic-bezier(.4,0,.2,1)', style({
-        transform: 'translateX(0) scaleY(1)',
-        opacity: 1,
-      })),
-    ]),
-    transition(':leave', [
-      style({
-        width: '*',
-        opacity: 1,
-        overflow: 'hidden',
-      }),
-      animate('150ms cubic-bezier(0, 0, 0.2, 1)', style({
-        marginRight: '-25px',
-        width: 0,
-        opacity: 0,
-        overflow: 'hidden',
-      })),
-    ]),
-  ]),
 ];
 
 export const AM_SELECT = new InjectionToken<SelectComponent>('AmSelect');
@@ -140,13 +115,6 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
   isDropdownShow = false;
 
   accessorInitialValue: any | any[] | null = null;
-
-  get valueAsString() {
-    return this.options
-      ?.filter(opt => opt.checked)
-      .map(opt => opt.elementRef.nativeElement.innerText.trim())
-      .join(', ')
-  }
 
   @ContentChildren(forwardRef(() => OptionComponent), {
     descendants: true,
@@ -272,6 +240,13 @@ export class SelectComponent implements OnInit, AfterContentInit, ControlValueAc
         }
       });
     }
+  }
+
+  get valueAsString() {
+    return this.options
+      ?.filter(opt => opt.checked)
+      .map(opt => opt.elementRef.nativeElement.innerText.trim())
+      .join(', ')
   }
 
   private updateValue() {

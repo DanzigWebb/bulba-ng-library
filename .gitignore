@@ -45,3 +45,4 @@ testem.log
 Thumbs.db
 
 projects/am-bulba/node_modules
+/.npmrc

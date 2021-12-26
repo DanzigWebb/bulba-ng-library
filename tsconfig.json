@@ -3,10 +3,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "am-bulba": [
-        "dist/am-bulba/am-bulba",
-        "dist/am-bulba"
-      ]
+      "am-bulba": ["projects/am-bulba/src/public-api"]
     },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
